@@ -57,9 +57,9 @@ final class Repository
 
 
     /**
-     * @param int $fill_id
+     * @param string $fill_id
      */
-    public function deleteFillStorages(int $fill_id)/*: void*/
+    public function deleteFillStorages(string $fill_id)/*: void*/
     {
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
             $this->deleteFillStorage($fill_storage);
@@ -134,11 +134,11 @@ final class Repository
 
 
     /**
-     * @param int $fill_id
+     * @param string $fill_id
      *
      * @return FillStorage[]
      */
-    protected function getFillStorages(int $fill_id) : array
+    protected function getFillStorages(string $fill_id) : array
     {
         $fill_storages = FillStorage::where([
             "fill_id" => $fill_id
@@ -149,11 +149,11 @@ final class Repository
 
 
     /**
-     * @param int|null $fill_id
+     * @param string|null $fill_id
      *
      * @return array
      */
-    public function getFilledValues(/*?*/ int $fill_id = null) : array
+    public function getFilledValues(/*?*/ string $fill_id = null) : array
     {
         if ($fill_id === null) {
             if (isset($_SESSION[self::SESSION_TEMP_FIELD_VALUES_STORAGE])) {
@@ -183,10 +183,10 @@ final class Repository
 
 
     /**
-     * @param int|null   $fill_id
-     * @param array|null $filled_values
+     * @param string|null $fill_id
+     * @param array|null  $filled_values
      */
-    public function storeFilledValues(/*?*/ int $fill_id = null, /*?*/ array $filled_values = null)/*:void*/
+    public function storeFilledValues(/*?*/ string $fill_id = null, /*?*/ array $filled_values = null)/*:void*/
     {
         if ($fill_id !== null) {
             if ($filled_values === null) {
