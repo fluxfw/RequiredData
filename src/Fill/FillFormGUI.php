@@ -5,7 +5,6 @@ namespace srag\RequiredData\Fill;
 use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
 use srag\RequiredData\Field\AbstractFieldsCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
-use stdClass;
 
 /**
  * Class FillFormGUI
@@ -20,7 +19,7 @@ class FillFormGUI extends PropertyFormGUI
     use RequiredDataTrait;
     const LANG_MODULE = AbstractFieldsCtrl::LANG_MODULE;
     /**
-     * @var stdClass
+     * @var array
      */
     protected $filled_values;
 
@@ -32,7 +31,7 @@ class FillFormGUI extends PropertyFormGUI
      */
     public function __construct(AbstractFillCtrl $parent)
     {
-        $this->filled_values = $parent->getFilledValues();
+        $this->filled_values = self::requiredData()->fills()->getFilledValues($parent->getFillId());
 
         parent::__construct($parent);
     }
@@ -47,7 +46,7 @@ class FillFormGUI extends PropertyFormGUI
             case (strpos($key, "field_") === 0):
                 $field_id = substr($key, strlen("field_"));
 
-                return $this->filled_values->{$field_id};
+                return $this->filled_values[$field_id];
 
             default:
                 return null;
@@ -111,7 +110,7 @@ class FillFormGUI extends PropertyFormGUI
             case (strpos($key, "field_") === 0):
                 $field_id = substr($key, strlen("field_"));
 
-                $this->filled_values->{$field_id} = $value;
+                $this->filled_values[$field_id] = $value;
                 break;
 
             default:
@@ -129,7 +128,9 @@ class FillFormGUI extends PropertyFormGUI
             return false;
         }
 
-        $this->parent->storeFilledValues(self::requiredData()->fills()->formatAsJsons($this->parent->getParentContext(), $this->parent->getParentId(), $this->filled_values));
+        $this->filled_values = self::requiredData()->fills()->formatAsJsons($this->parent->getParentContext(), $this->parent->getParentId(), $this->filled_values);
+
+        self::requiredData()->fills()->storeFilledValues($this->parent->getFillId(), $this->filled_values);
 
         return true;
     }

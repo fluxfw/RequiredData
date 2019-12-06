@@ -72,4 +72,17 @@ final class Factory
 
         return $form;
     }
+
+
+    /**
+     * @return FillStorage
+     *
+     * @internal
+     */
+    public function newFillStorageInstance() : FillStorage
+    {
+        $fill_storage = new FillStorage();
+
+        return $fill_storage;
+    }
 }

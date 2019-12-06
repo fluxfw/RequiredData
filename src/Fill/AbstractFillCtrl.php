@@ -5,7 +5,6 @@ namespace srag\RequiredData\Fill;
 use srag\DIC\DICTrait;
 use srag\RequiredData\Field\AbstractFieldsCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
-use stdClass;
 
 /**
  * Class AbstractFillCtrl
@@ -32,18 +31,24 @@ abstract class AbstractFillCtrl
      * @var int
      */
     protected $parent_id;
+    /**
+     * @var int|null
+     */
+    protected $fill_id;
 
 
     /**
      * AbstractFillCtrl constructor
      *
-     * @param int $parent_context
-     * @param int $parent_id
+     * @param int      $parent_context
+     * @param int      $parent_id
+     * @param int|null $fill_id
      */
-    public function __construct(int $parent_context, int $parent_id)
+    public function __construct(int $parent_context, int $parent_id,/*?*/ int $fill_id = null)
     {
         $this->parent_context = $parent_context;
         $this->parent_id = $parent_id;
+        $this->fill_id = $fill_id;
     }
 
 
@@ -140,15 +145,12 @@ abstract class AbstractFillCtrl
 
 
     /**
-     * @return stdClass
+     * @return int|null
      */
-    public abstract function getFilledValues() : stdClass;
-
-
-    /**
-     * @param array $filled_values
-     */
-    public abstract function storeFilledValues(stdClass $filled_values)/* : void*/ ;
+    public function getFillId() : ?int
+    {
+        return $this->fill_id;
+    }
 
 
     /**

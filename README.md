@@ -101,24 +101,6 @@ class FillCtrl extends AbstractFillCtrl
     /**
      * @inheritDoc
      */
-    public function getFilledValues() : array
-    {
-        ...
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeFilledValues(array $filled_values)/* : void*/
-    {
-        ...
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     protected function back()/* : void*/
     {
         ...
