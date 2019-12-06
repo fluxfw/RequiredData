@@ -1,0 +1,68 @@
+<?php
+
+namespace srag\RequiredData\Field\Checkbox;
+
+use ilCheckboxInputGUI;
+use ilUtil;
+use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
+use srag\RequiredData\Fill\AbstractFillField;
+
+/**
+ * Class CheckboxFillField
+ *
+ * @package srag\RequiredData\Field\Checkbox
+ *
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ */
+class CheckboxFillField extends AbstractFillField
+{
+
+    /**
+     * @var CheckboxField
+     */
+    protected $field;
+
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(CheckboxField $field)
+    {
+        parent::__construct($field);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFormFields() : array
+    {
+        return [
+            PropertyFormGUI::PROPERTY_CLASS => ilCheckboxInputGUI::class
+        ];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function formatAsJson($filled_value)
+    {
+        return boolval($filled_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function formatAsString($filled_value) : string
+    {
+        if ($filled_value) {
+            $img = ilUtil::getImagePath("icon_ok.svg");
+        } else {
+            $img = ilUtil::getImagePath("icon_not_ok.svg");
+        }
+
+        return self::output()->getHTML(self::dic()->ui()->factory()->image()->standard($img, ""));
+    }
+}
