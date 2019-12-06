@@ -32,7 +32,7 @@ abstract class AbstractFillCtrl
      */
     protected $parent_id;
     /**
-     * @var int|null
+     * @var string|null
      */
     protected $fill_id;
 
@@ -40,11 +40,11 @@ abstract class AbstractFillCtrl
     /**
      * AbstractFillCtrl constructor
      *
-     * @param int      $parent_context
-     * @param int      $parent_id
-     * @param int|null $fill_id
+     * @param int         $parent_context
+     * @param int         $parent_id
+     * @param string|null $fill_id
      */
-    public function __construct(int $parent_context, int $parent_id,/*?*/ int $fill_id = null)
+    public function __construct(int $parent_context, int $parent_id,/*?*/ string $fill_id = null)
     {
         $this->parent_context = $parent_context;
         $this->parent_id = $parent_id;
@@ -145,9 +145,9 @@ abstract class AbstractFillCtrl
 
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getFillId() : ?int
+    public function getFillId()/* : ?string*/
     {
         return $this->fill_id;
     }

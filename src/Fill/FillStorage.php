@@ -68,12 +68,11 @@ class FillStorage extends ActiveRecord
      */
     protected $fill_storage_id;
     /**
-     * @var int
+     * @var string
      *
      * @con_has_field    true
      * @con_fieldtype    text
-     * @con_is_notnull   integer
-     * @con_length       8
+     * @con_is_notnull   true
      */
     protected $fill_id;
     /**
@@ -157,18 +156,18 @@ class FillStorage extends ActiveRecord
 
 
     /**
-     * @return int
+     * @return string
      */
-    public function getFillId() : int
+    public function getFillId() : string
     {
         return $this->fill_id;
     }
 
 
     /**
-     * @param int $fill_id
+     * @param string $fill_id
      */
-    public function setFillId(int $fill_id)/* : void*/
+    public function setFillId(string $fill_id)/* : void*/
     {
         $this->fill_id = $fill_id;
     }
