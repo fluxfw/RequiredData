@@ -24,7 +24,7 @@ class FillStorage extends ActiveRecord
      *
      * @abstract
      */
-    const TABLE_NAME_SUFFIX = "storage";
+    const TABLE_NAME_SUFFIX = "store";
 
 
     /**
@@ -32,7 +32,7 @@ class FillStorage extends ActiveRecord
      */
     public static function getTableName() : string
     {
-        return self::requiredData()->getTableNamePrefix() . "_" . static::TABLE_NAME_SUFFIX;
+        return self::requiredData()->getTableNamePrefix() . "_fll_" . static::TABLE_NAME_SUFFIX;
     }
 
 
