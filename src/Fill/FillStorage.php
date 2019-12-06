@@ -24,7 +24,7 @@ class FillStorage extends ActiveRecord
      *
      * @abstract
      */
-    const TABLE_NAME_SUFFIX = "storage";
+    const TABLE_NAME_SUFFIX = "store";
 
 
     /**
