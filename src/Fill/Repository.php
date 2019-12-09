@@ -16,7 +16,7 @@ use srag\RequiredData\Utils\RequiredDataTrait;
 final class Repository
 {
 
-    const SESSION_TEMP_FIELD_VALUES_STORAGE = "required_data_temp_field_values";
+    const SESSION_TEMP_FILL_VALUES_STORAGE = "required_data_temp_fill_values";
     use DICTrait;
     use RequiredDataTrait;
     /**
@@ -177,8 +177,8 @@ final class Repository
     public function getFillValues(/*?*/ string $fill_id = null) : array
     {
         if ($fill_id === null) {
-            if (isset($_SESSION[self::SESSION_TEMP_FIELD_VALUES_STORAGE])) {
-                return (array) ilSession::get(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
+            if (isset($_SESSION[self::SESSION_TEMP_FILL_VALUES_STORAGE])) {
+                return (array) ilSession::get(self::SESSION_TEMP_FILL_VALUES_STORAGE);
             }
 
             return [];
@@ -229,10 +229,10 @@ final class Repository
     {
         if ($fill_id !== null) {
             if ($fill_values === null) {
-                if (isset($_SESSION[self::SESSION_TEMP_FIELD_VALUES_STORAGE])) {
-                    $fill_values = (array) ilSession::get(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
+                if (isset($_SESSION[self::SESSION_TEMP_FILL_VALUES_STORAGE])) {
+                    $fill_values = (array) ilSession::get(self::SESSION_TEMP_FILL_VALUES_STORAGE);
 
-                    ilSession::clear(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
+                    ilSession::clear(self::SESSION_TEMP_FILL_VALUES_STORAGE);
                 }
             }
 
@@ -240,7 +240,7 @@ final class Repository
                 $this->storeFillValue($fill_id, $field_id, $fill_value);
             }
         } else {
-            ilSession::set(self::SESSION_TEMP_FIELD_VALUES_STORAGE, $fill_values);
+            ilSession::set(self::SESSION_TEMP_FILL_VALUES_STORAGE, $fill_values);
         }
     }
 
