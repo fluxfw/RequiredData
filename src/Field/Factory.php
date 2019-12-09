@@ -116,12 +116,12 @@ final class Factory
 
 
     /**
-     * @param AbstractFieldsCtrl $parent
-     * @param string             $cmd
+     * @param FieldsCtrl $parent
+     * @param string     $cmd
      *
      * @return FieldsTableGUI
      */
-    public function newTableInstance(AbstractFieldsCtrl $parent, string $cmd = AbstractFieldsCtrl::CMD_LIST_FIELDS) : FieldsTableGUI
+    public function newTableInstance(FieldsCtrl $parent, string $cmd = FieldsCtrl::CMD_LIST_FIELDS) : FieldsTableGUI
     {
         $table = new FieldsTableGUI($parent, $cmd);
 
@@ -130,11 +130,11 @@ final class Factory
 
 
     /**
-     * @param AbstractFieldCtrl $parent
+     * @param FieldCtrl $parent
      *
      * @return CreateFieldFormGUI
      */
-    public function newCreateFormInstance(AbstractFieldCtrl $parent) : CreateFieldFormGUI
+    public function newCreateFormInstance(FieldCtrl $parent) : CreateFieldFormGUI
     {
         $form = new CreateFieldFormGUI($parent);
 
@@ -143,12 +143,12 @@ final class Factory
 
 
     /**
-     * @param AbstractFieldCtrl $parent
-     * @param AbstractField     $field
+     * @param FieldCtrl     $parent
+     * @param AbstractField $field
      *
      * @return AbstractFieldFormGUI
      */
-    public function newFormInstance(AbstractFieldCtrl $parent, AbstractField $field) : AbstractFieldFormGUI
+    public function newFormInstance(FieldCtrl $parent, AbstractField $field) : AbstractFieldFormGUI
     {
         $class = get_class($field) . "FormGUI";
 

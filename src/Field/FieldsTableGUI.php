@@ -19,16 +19,16 @@ class FieldsTableGUI extends TableGUI
 {
 
     use RequiredDataTrait;
-    const LANG_MODULE = AbstractFieldsCtrl::LANG_MODULE;
+    const LANG_MODULE = FieldsCtrl::LANG_MODULE;
 
 
     /**
      * FieldsTableGUI constructor
      *
-     * @param AbstractFieldsCtrl $parent
-     * @param string             $parent_cmd
+     * @param FieldsCtrl $parent
+     * @param string     $parent_cmd
      */
-    public function __construct(AbstractFieldsCtrl $parent, string $parent_cmd)
+    public function __construct(FieldsCtrl $parent, string $parent_cmd)
     {
         parent::__construct($parent, $parent_cmd);
     }
@@ -125,12 +125,12 @@ class FieldsTableGUI extends TableGUI
     protected function initCommands()/*: void*/
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_field"), self::dic()->ctrl()
-            ->getLinkTargetByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::CMD_ADD_FIELD)));
+            ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_ADD_FIELD)));
 
-        $this->setSelectAllCheckbox(AbstractFieldCtrl::GET_PARAM_FIELD_ID);
-        $this->addMultiCommand(AbstractFieldsCtrl::CMD_ENABLE_FIELDS, $this->txt("enable_fields"));
-        $this->addMultiCommand(AbstractFieldsCtrl::CMD_DISABLE_FIELD, $this->txt("disable_fields"));
-        $this->addMultiCommand(AbstractFieldsCtrl::CMD_REMOVE_FIELDS_CONFIRM, $this->txt("remove_fields"));
+        $this->setSelectAllCheckbox(FieldCtrl::GET_PARAM_FIELD_ID);
+        $this->addMultiCommand(FieldsCtrl::CMD_ENABLE_FIELDS, $this->txt("enable_fields"));
+        $this->addMultiCommand(FieldsCtrl::CMD_DISABLE_FIELD, $this->txt("disable_fields"));
+        $this->addMultiCommand(FieldsCtrl::CMD_REMOVE_FIELDS_CONFIRM, $this->txt("remove_fields"));
     }
 
 
@@ -178,11 +178,11 @@ class FieldsTableGUI extends TableGUI
      */
     protected function fillRow(/*AbstractField*/ $field)/*: void*/
     {
-        self::dic()->ctrl()->setParameterByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::GET_PARAM_FIELD_TYPE, $field->getType());
-        self::dic()->ctrl()->setParameterByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::GET_PARAM_FIELD_ID, $field->getFieldId());
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $field->getType());
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $field->getFieldId());
 
         $this->tpl->setCurrentBlock("checkbox");
-        $this->tpl->setVariable("CHECKBOX_POST_VAR", AbstractFieldCtrl::GET_PARAM_FIELD_ID);
+        $this->tpl->setVariable("CHECKBOX_POST_VAR", FieldCtrl::GET_PARAM_FIELD_ID);
         $this->tpl->setVariable("ID", $field->getId());
         $this->tpl->parseCurrentBlock();
         $this->tpl->setCurrentBlock("column");
@@ -197,7 +197,7 @@ class FieldsTableGUI extends TableGUI
                 $.ajax({
                     url: ' . json_encode(self::dic()
                         ->ctrl()
-                        ->getLinkTargetByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::CMD_MOVE_FIELD_UP, "", true)) . ',
+                        ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_UP, "", true)) . ',
                     type: "GET"
                  }).always(function () {
                     il.waiter.hide();
@@ -214,7 +214,7 @@ class FieldsTableGUI extends TableGUI
                 $.ajax({
                     url: ' . json_encode(self::dic()
                         ->ctrl()
-                        ->getLinkTargetByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::CMD_MOVE_FIELD_DOWN, "", true)) . ',
+                        ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true)) . ',
                     type: "GET"
                 }).always(function () {
                     il.waiter.hide();
@@ -230,9 +230,9 @@ class FieldsTableGUI extends TableGUI
 
         $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
             self::dic()->ui()->factory()->button()->shy($this->txt("edit_field"), self::dic()->ctrl()
-                ->getLinkTargetByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::CMD_EDIT_FIELD)),
+                ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_EDIT_FIELD)),
             self::dic()->ui()->factory()->button()->shy($this->txt("remove_field"), self::dic()->ctrl()
-                ->getLinkTargetByClass($this->parent_obj->getFieldCtrlClass(), AbstractFieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
+                ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
         ])->withLabel($this->txt("actions"))));
     }
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.0]
+- Improvments
+
 ## [0.3.0]
 - get or store fill value by field
 

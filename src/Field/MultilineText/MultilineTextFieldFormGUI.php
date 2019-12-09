@@ -2,7 +2,7 @@
 
 namespace srag\RequiredData\Field\MultilineText;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\Text\TextFieldFormGUI;
 
 /**
@@ -24,7 +24,7 @@ class MultilineTextFieldFormGUI extends TextFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, MultilineTextField $object)
+    public function __construct(FieldCtrl $parent, MultilineTextField $object)
     {
         parent::__construct($parent, $object);
     }

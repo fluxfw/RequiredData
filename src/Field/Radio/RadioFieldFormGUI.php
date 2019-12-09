@@ -2,7 +2,7 @@
 
 namespace srag\RequiredData\Field\Radio;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\Select\SelectFieldFormGUI;
 
 /**
@@ -24,7 +24,7 @@ class RadioFieldFormGUI extends SelectFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, RadioField $object)
+    public function __construct(FieldCtrl $parent, RadioField $object)
     {
         parent::__construct($parent, $object);
     }

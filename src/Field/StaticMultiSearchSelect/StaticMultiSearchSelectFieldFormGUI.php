@@ -3,7 +3,7 @@
 namespace srag\RequiredData\Field\StaticMultiSearchSelect;
 
 use srag\CustomInputGUIs\MultiSelectSearchInputGUI\MultiSelectSearchInputGUI;
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\MultiSearchSelect\MultiSearchSelectFieldFormGUI;
 
 /**
@@ -25,7 +25,7 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, StaticMultiSearchSelectField $object)
+    public function __construct(FieldCtrl $parent, StaticMultiSearchSelectField $object)
     {
         parent::__construct($parent, $object);
     }
@@ -62,7 +62,7 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
                     self::PROPERTY_CLASS    => MultiSelectSearchInputGUI::class,
                     self::PROPERTY_REQUIRED => true,
                     self::PROPERTY_OPTIONS  => $this->deliverPossibleOptions(),
-                    "setAjaxLink"           => self::dic()->ctrl()->getLinkTarget($this->parent, AbstractFieldCtrl::CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE, "", true, false)
+                    "setAjaxLink"           => self::dic()->ctrl()->getLinkTarget($this->parent, FieldCtrl::CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE, "", true, false)
                 ]
             ]
         );

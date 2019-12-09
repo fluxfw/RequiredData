@@ -53,35 +53,10 @@ self::requiredData()->configs()->dropTables();
 /**
  * ...
  *
- * @ilCtrl_isCalledBy srag\Plugins\x\Field\FieldsCtrl: x
+ * @ilCtrl_isCalledBy srag\RequiredData\x\Field\FieldsCtrl: x
  */
-class FieldsCtrl extends AbstractFieldsCtrl
+class x
 {
-    ...
-    const PLUGIN_CLASS_NAME = ilXPlugin::class;
-    ...
-    /**
-     * @inheritDoc
-     */
-    public function getFieldCtrlClass() : string
-    {
-        return FieldCtrl::class;
-    }
-    ...
-}
-```
-
-```php
-...
-/**
- * ...
- *
- * @ilCtrl_isCalledBy srag\Plugins\x\Field\FieldCtrl: srag\Plugins\x\Field\FieldsCtrl
- */
-class FieldCtrl extends AbstractFieldCtrl
-{
-    ...
-    const PLUGIN_CLASS_NAME = ilXPlugin::class;
     ...
 }
 ```

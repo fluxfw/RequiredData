@@ -8,13 +8,13 @@ use srag\DIC\DICTrait;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
- * Class AbstractFieldsCtrl
+ * Class FieldsCtrl
  *
  * @package srag\RequiredData\Field
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-abstract class AbstractFieldsCtrl
+class FieldsCtrl
 {
 
     use DICTrait;
@@ -37,7 +37,7 @@ abstract class AbstractFieldsCtrl
 
 
     /**
-     * AbstractFieldsCtrl constructor
+     * FieldsCtrl constructor
      *
      * @param int $parent_context
      * @param int $parent_id
@@ -59,9 +59,8 @@ abstract class AbstractFieldsCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower($this->getFieldCtrlClass());
-                $class = $this->getFieldCtrlClass();
-                self::dic()->ctrl()->forwardCommand(new $class($this));
+            case strtolower(FieldCtrl::class);
+                self::dic()->ctrl()->forwardCommand(new FieldCtrl($this));
                 break;
 
             default:
@@ -109,7 +108,7 @@ abstract class AbstractFieldsCtrl
      */
     protected function enableFields()/*: void*/
     {
-        $field_ids = filter_input(INPUT_POST, AbstractFieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
         if (!is_array($field_ids)) {
             $field_ids = [];
@@ -130,7 +129,7 @@ abstract class AbstractFieldsCtrl
             $field->store();
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("enabled_fields", self::LANG_MODULE), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("enabled_fields", self::LANG_MODULE), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_LIST_FIELDS);
     }
@@ -141,7 +140,7 @@ abstract class AbstractFieldsCtrl
      */
     protected function disableFields()/*: void*/
     {
-        $field_ids = filter_input(INPUT_POST, AbstractFieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
         if (!is_array($field_ids)) {
             $field_ids = [];
@@ -162,7 +161,7 @@ abstract class AbstractFieldsCtrl
             $field->store();
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("disabled_fields", self::LANG_MODULE), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("disabled_fields", self::LANG_MODULE), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_LIST_FIELDS);
     }
@@ -175,7 +174,7 @@ abstract class AbstractFieldsCtrl
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
 
-        $field_ids = filter_input(INPUT_POST, AbstractFieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
         if (!is_array($field_ids)) {
             $field_ids = [];
@@ -194,14 +193,14 @@ abstract class AbstractFieldsCtrl
 
         $confirmation->setFormAction(self::dic()->ctrl()->getFormAction($this));
 
-        $confirmation->setHeaderText(self::plugin()->translate("remove_fields_confirm", self::LANG_MODULE));
+        $confirmation->setHeaderText(self::requiredData()->getPlugin()->translate("remove_fields_confirm", self::LANG_MODULE));
 
         foreach ($fields as $field) {
-            $confirmation->addItem(AbstractFieldCtrl::GET_PARAM_FIELD_ID . "[]", $field->getId(), $field->getFieldTitle());
+            $confirmation->addItem(FieldCtrl::GET_PARAM_FIELD_ID . "[]", $field->getId(), $field->getFieldTitle());
         }
 
-        $confirmation->setConfirm(self::plugin()->translate("remove", self::LANG_MODULE), self::CMD_REMOVE_FIELDS);
-        $confirmation->setCancel(self::plugin()->translate("cancel", self::LANG_MODULE), self::CMD_LIST_FIELDS);
+        $confirmation->setConfirm(self::requiredData()->getPlugin()->translate("remove", self::LANG_MODULE), self::CMD_REMOVE_FIELDS);
+        $confirmation->setCancel(self::requiredData()->getPlugin()->translate("cancel", self::LANG_MODULE), self::CMD_LIST_FIELDS);
 
         self::output()->output($confirmation);
     }
@@ -212,7 +211,7 @@ abstract class AbstractFieldsCtrl
      */
     protected function removeFields()/*: void*/
     {
-        $field_ids = filter_input(INPUT_POST, AbstractFieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
         if (!is_array($field_ids)) {
             $field_ids = [];
@@ -231,7 +230,7 @@ abstract class AbstractFieldsCtrl
             self::requiredData()->fields()->deleteField($field);
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("removed_fields", self::LANG_MODULE), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_fields", self::LANG_MODULE), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_LIST_FIELDS);
     }
@@ -253,10 +252,4 @@ abstract class AbstractFieldsCtrl
     {
         return $this->parent_id;
     }
-
-
-    /**
-     * @return string
-     */
-    public abstract function getFieldCtrlClass() : string;
 }

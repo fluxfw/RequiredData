@@ -6,8 +6,8 @@ use ilTextInputGUI;
 use srag\CustomInputGUIs\MultiLineNewInputGUI\MultiLineNewInputGUI;
 use srag\CustomInputGUIs\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\CustomInputGUIs\TabsInputGUI\TabsInputGUI;
-use srag\RequiredData\Field\AbstractFieldCtrl;
 use srag\RequiredData\Field\AbstractFieldFormGUI;
+use srag\RequiredData\Field\FieldCtrl;
 
 /**
  * Class SelectFieldFormGUI
@@ -28,7 +28,7 @@ class SelectFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, SelectField $object)
+    public function __construct(FieldCtrl $parent, SelectField $object)
     {
         parent::__construct($parent, $object);
     }

@@ -3,7 +3,7 @@
 namespace srag\RequiredData\Fill;
 
 use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
-use srag\RequiredData\Field\AbstractFieldsCtrl;
+use srag\RequiredData\Field\FieldsCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -17,7 +17,7 @@ class FillFormGUI extends PropertyFormGUI
 {
 
     use RequiredDataTrait;
-    const LANG_MODULE = AbstractFieldsCtrl::LANG_MODULE;
+    const LANG_MODULE = FieldsCtrl::LANG_MODULE;
     /**
      * @var array
      */
