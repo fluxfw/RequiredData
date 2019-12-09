@@ -2,8 +2,8 @@
 
 namespace srag\RequiredData\Field\Date;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
 use srag\RequiredData\Field\AbstractFieldFormGUI;
+use srag\RequiredData\Field\FieldCtrl;
 
 /**
  * Class DateFieldFormGUI
@@ -24,7 +24,7 @@ class DateFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, DateField $object)
+    public function __construct(FieldCtrl $parent, DateField $object)
     {
         parent::__construct($parent, $object);
     }

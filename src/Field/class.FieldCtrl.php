@@ -8,13 +8,15 @@ use srag\DIC\DICTrait;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
- * Class AbstractFieldCtrl
+ * Class FieldCtrl
  *
- * @package srag\RequiredData\Field
+ * @package           srag\RequiredData\Field
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @ilCtrl_isCalledBy srag\RequiredData\Field\FieldCtrl: srag\RequiredData\Field\FieldsCtrl
  */
-abstract class AbstractFieldCtrl
+class FieldCtrl
 {
 
     use DICTrait;
@@ -33,7 +35,7 @@ abstract class AbstractFieldCtrl
     const GET_PARAM_FIELD_TYPE = "field_type";
     const TAB_EDIT_FIELD = "field_data";
     /**
-     * @var AbstractFieldsCtrl
+     * @var FieldsCtrl
      */
     protected $parent;
     /**
@@ -43,11 +45,11 @@ abstract class AbstractFieldCtrl
 
 
     /**
-     * AbstractFieldCtrl constructor
+     * FieldCtrl constructor
      *
-     * @param AbstractFieldsCtrl $parent
+     * @param FieldsCtrl $parent
      */
-    public function __construct(AbstractFieldsCtrl $parent)
+    public function __construct(FieldsCtrl $parent)
     {
         $this->parent = $parent;
     }
@@ -103,21 +105,21 @@ abstract class AbstractFieldCtrl
     {
         self::dic()->tabs()->clearTargets();
 
-        self::dic()->tabs()->setBackTarget(self::plugin()->translate("fields", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTarget($this, self::CMD_BACK));
 
         if ($this->field !== null) {
             if (self::dic()->ctrl()->getCmd() === self::CMD_REMOVE_FIELD_CONFIRM) {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::plugin()->translate("remove_field", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
                     ->getLinkTarget($this, self::CMD_REMOVE_FIELD_CONFIRM));
             } else {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::plugin()->translate("edit_field", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
                     ->getLinkTarget($this, self::CMD_EDIT_FIELD));
 
                 self::dic()->locator()->addItem($this->field->getFieldTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_FIELD));
             }
         } else {
-            self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::plugin()->translate("add_field", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+            self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
                 ->getLinkTarget($this, self::CMD_ADD_FIELD));
         }
 
@@ -130,7 +132,7 @@ abstract class AbstractFieldCtrl
      */
     protected function back()/*: void*/
     {
-        self::dic()->ctrl()->redirect($this->parent, AbstractFieldsCtrl::CMD_LIST_FIELDS);
+        self::dic()->ctrl()->redirect($this->parent, FieldsCtrl::CMD_LIST_FIELDS);
     }
 
 
@@ -185,7 +187,7 @@ abstract class AbstractFieldCtrl
         self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_TYPE, $this->field->getType());
         self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_ID, $this->field->getFieldId());
 
-        ilUtil::sendSuccess(self::plugin()->translate("added_field", AbstractFieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("added_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_FIELD);
     }
@@ -237,7 +239,7 @@ abstract class AbstractFieldCtrl
             return;
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("saved_field", AbstractFieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("saved_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_FIELD);
     }
@@ -252,13 +254,13 @@ abstract class AbstractFieldCtrl
 
         $confirmation->setFormAction(self::dic()->ctrl()->getFormAction($this));
 
-        $confirmation->setHeaderText(self::plugin()
-            ->translate("remove_field_confirm", AbstractFieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]));
+        $confirmation->setHeaderText(self::requiredData()->getPlugin()
+            ->translate("remove_field_confirm", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]));
 
         $confirmation->addItem(self::GET_PARAM_FIELD_ID, $this->field->getId(), $this->field->getFieldTitle());
 
-        $confirmation->setConfirm(self::plugin()->translate("remove", AbstractFieldsCtrl::LANG_MODULE), self::CMD_REMOVE_FIELD);
-        $confirmation->setCancel(self::plugin()->translate("cancel", AbstractFieldsCtrl::LANG_MODULE), self::CMD_BACK);
+        $confirmation->setConfirm(self::requiredData()->getPlugin()->translate("remove", FieldsCtrl::LANG_MODULE), self::CMD_REMOVE_FIELD);
+        $confirmation->setCancel(self::requiredData()->getPlugin()->translate("cancel", FieldsCtrl::LANG_MODULE), self::CMD_BACK);
 
         self::output()->output($confirmation);
     }
@@ -271,16 +273,16 @@ abstract class AbstractFieldCtrl
     {
         self::requiredData()->fields()->deleteField($this->field);
 
-        ilUtil::sendSuccess(self::plugin()->translate("removed_field", AbstractFieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_BACK);
     }
 
 
     /**
-     * @return AbstractFieldsCtrl
+     * @return FieldsCtrl
      */
-    public function getParent() : AbstractFieldsCtrl
+    public function getParent() : FieldsCtrl
     {
         return $this->parent;
     }

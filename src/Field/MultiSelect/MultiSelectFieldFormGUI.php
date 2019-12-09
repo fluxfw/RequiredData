@@ -2,7 +2,7 @@
 
 namespace srag\RequiredData\Field\MultiSelect;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\Select\SelectFieldFormGUI;
 
 /**
@@ -24,7 +24,7 @@ class MultiSelectFieldFormGUI extends SelectFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, MultiSelectField $object)
+    public function __construct(FieldCtrl $parent, MultiSelectField $object)
     {
         parent::__construct($parent, $object);
     }

@@ -162,7 +162,7 @@ abstract class AbstractField extends ActiveRecord
      */
     public function getTypeTitle() : string
     {
-        return self::requiredData()->getPlugin()->translate("type_" . static::getType(), AbstractFieldsCtrl::LANG_MODULE);
+        return self::requiredData()->getPlugin()->translate("type_" . static::getType(), FieldsCtrl::LANG_MODULE);
     }
 
 

@@ -2,7 +2,7 @@
 
 namespace srag\RequiredData\Field\MultiSearchSelect;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\MultiSelect\MultiSelectFieldFormGUI;
 
 /**
@@ -24,7 +24,7 @@ class MultiSearchSelectFieldFormGUI extends MultiSelectFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, MultiSearchSelectField $object)
+    public function __construct(FieldCtrl $parent, MultiSearchSelectField $object)
     {
         parent::__construct($parent, $object);
     }

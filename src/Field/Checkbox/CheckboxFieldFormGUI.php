@@ -2,8 +2,8 @@
 
 namespace srag\RequiredData\Field\Checkbox;
 
-use srag\RequiredData\Field\AbstractFieldCtrl;
 use srag\RequiredData\Field\AbstractFieldFormGUI;
+use srag\RequiredData\Field\FieldCtrl;
 
 /**
  * Class CheckboxFieldFormGUI
@@ -24,7 +24,7 @@ class CheckboxFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, CheckboxField $object)
+    public function __construct(FieldCtrl $parent, CheckboxField $object)
     {
         parent::__construct($parent, $object);
     }

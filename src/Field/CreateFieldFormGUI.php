@@ -18,7 +18,7 @@ class CreateFieldFormGUI extends ObjectPropertyFormGUI
 {
 
     use RequiredDataTrait;
-    const LANG_MODULE = AbstractFieldsCtrl::LANG_MODULE;
+    const LANG_MODULE = FieldsCtrl::LANG_MODULE;
     /**
      * @var AbstractField
      */
@@ -32,9 +32,9 @@ class CreateFieldFormGUI extends ObjectPropertyFormGUI
     /**
      * CreateFieldFormGUI constructor
      *
-     * @param AbstractFieldCtrl $parent
+     * @param FieldCtrl $parent
      */
-    public function __construct(AbstractFieldCtrl $parent)
+    public function __construct(FieldCtrl $parent)
     {
         $this->type = current(array_keys(self::requiredData()->fields()->factory()->getClasses()));
 
@@ -59,8 +59,8 @@ class CreateFieldFormGUI extends ObjectPropertyFormGUI
      */
     protected function initCommands()/*: void*/
     {
-        $this->addCommandButton(AbstractFieldCtrl::CMD_CREATE_FIELD, $this->txt("add"));
-        $this->addCommandButton(AbstractFieldCtrl::CMD_BACK, $this->txt("cancel"));
+        $this->addCommandButton(FieldCtrl::CMD_CREATE_FIELD, $this->txt("add"));
+        $this->addCommandButton(FieldCtrl::CMD_BACK, $this->txt("cancel"));
     }
 
 

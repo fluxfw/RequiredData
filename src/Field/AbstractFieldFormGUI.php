@@ -21,7 +21,7 @@ abstract class AbstractFieldFormGUI extends ObjectPropertyFormGUI
 {
 
     use RequiredDataTrait;
-    const LANG_MODULE = AbstractFieldsCtrl::LANG_MODULE;
+    const LANG_MODULE = FieldsCtrl::LANG_MODULE;
     /**
      * @var AbstractField
      */
@@ -31,10 +31,10 @@ abstract class AbstractFieldFormGUI extends ObjectPropertyFormGUI
     /**
      * AbstractFieldFormGUI constructor
      *
-     * @param AbstractFieldCtrl $parent
-     * @param AbstractField     $object
+     * @param FieldCtrl     $parent
+     * @param AbstractField $object
      */
-    public function __construct(AbstractFieldCtrl $parent, AbstractField $object)
+    public function __construct(FieldCtrl $parent, AbstractField $object)
     {
         parent::__construct($parent, $object);
     }
@@ -57,7 +57,7 @@ abstract class AbstractFieldFormGUI extends ObjectPropertyFormGUI
      */
     protected function initCommands()/*: void*/
     {
-        $this->addCommandButton(AbstractFieldCtrl::CMD_UPDATE_FIELD, $this->txt("save"));
+        $this->addCommandButton(FieldCtrl::CMD_UPDATE_FIELD, $this->txt("save"));
     }
 
 

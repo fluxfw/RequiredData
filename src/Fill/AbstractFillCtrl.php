@@ -3,7 +3,7 @@
 namespace srag\RequiredData\Fill;
 
 use srag\DIC\DICTrait;
-use srag\RequiredData\Field\AbstractFieldsCtrl;
+use srag\RequiredData\Field\FieldsCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -88,10 +88,10 @@ abstract class AbstractFillCtrl
     {
         self::dic()->tabs()->clearTargets();
 
-        self::dic()->tabs()->setBackTarget(self::plugin()->translate("back", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("back", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTarget($this, self::CMD_CANCEL));
 
-        self::dic()->tabs()->addTab(self::TAB_FILL_FIELDS, self::plugin()->translate("fill_fields", AbstractFieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+        self::dic()->tabs()->addTab(self::TAB_FILL_FIELDS, self::requiredData()->getPlugin()->translate("fill_fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTarget($this, self::CMD_FILL_FIELDS));
 
         self::dic()->tabs()->activateTab(self::TAB_FILL_FIELDS);

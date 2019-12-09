@@ -4,7 +4,7 @@ namespace srag\RequiredData\Field\Float;
 
 use ilCheckboxInputGUI;
 use ilNumberInputGUI;
-use srag\RequiredData\Field\AbstractFieldCtrl;
+use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\Integer\IntegerFieldFormGUI;
 
 /**
@@ -26,7 +26,7 @@ class FloatFieldFormGUI extends IntegerFieldFormGUI
     /**
      * @inheritDoc
      */
-    public function __construct(AbstractFieldCtrl $parent, FloatField $object)
+    public function __construct(FieldCtrl $parent, FloatField $object)
     {
         parent::__construct($parent, $object);
     }
