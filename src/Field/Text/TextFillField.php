@@ -45,17 +45,17 @@ class TextFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function formatAsJson($filled_value)
+    public function formatAsJson($fill_value)
     {
-        return strval($filled_value);
+        return strval($fill_value);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function formatAsString($filled_value) : string
+    public function formatAsString($fill_value) : string
     {
-        return strval($filled_value);
+        return strval($fill_value);
     }
 }

@@ -90,7 +90,7 @@ class FillStorage extends ActiveRecord
      * @con_fieldtype    text
      * @con_is_notnull   true
      */
-    protected $field_value;
+    protected $fill_value;
 
 
     /**
@@ -194,17 +194,17 @@ class FillStorage extends ActiveRecord
     /**
      * @return mixed
      */
-    public function getFieldValue()
+    public function getFillValue()
     {
-        return $this->field_value;
+        return $this->fill_value;
     }
 
 
     /**
-     * @param mixed $field_value
+     * @param mixed $fill_value
      */
-    public function setFieldValue($field_value)/* : void*/
+    public function setFillValue($fill_value)/* : void*/
     {
-        $this->field_value = $field_value;
+        $this->fill_value = $fill_value;
     }
 }

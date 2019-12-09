@@ -59,7 +59,7 @@ final class Repository
     /**
      * @param string $fill_id
      */
-    public function deleteFillStorages(string $fill_id)/*: void*/
+    protected function deleteFillStorages(string $fill_id)/*: void*/
     {
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
             $this->deleteFillStorage($fill_storage);
@@ -88,13 +88,13 @@ final class Repository
     /**
      * @param int   $parent_context
      * @param int   $parent_id
-     * @param array $filled_values
+     * @param array $fill_values
      *
      * @return array
      */
-    public function formatAsJsons(int $parent_context, int $parent_id, array $filled_values) : array
+    public function formatAsJsons(int $parent_context, int $parent_id, array $fill_values) : array
     {
-        foreach ($filled_values as $field_id => &$value) {
+        foreach ($fill_values as $field_id => &$value) {
             list($type, $field_id) = explode("_", $field_id);
 
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
@@ -104,32 +104,32 @@ final class Repository
             }
         }
 
-        return $filled_values;
+        return $fill_values;
     }
 
 
     /**
      * @param int   $parent_context
      * @param int   $parent_id
-     * @param array $filled_values
+     * @param array $fill_values
      *
      * @return array
      */
-    public function formatAsStrings(int $parent_context, int $parent_id, array $filled_values) : array
+    public function formatAsStrings(int $parent_context, int $parent_id, array $fill_values) : array
     {
-        $formated_filled_values = [];
+        $formated_fill_values = [];
 
-        foreach ($filled_values as $field_id => $value) {
+        foreach ($fill_values as $field_id => $value) {
             list($type, $field_id) = explode("_", $field_id);
 
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
 
             if ($field !== null) {
-                $formated_filled_values[$field->getLabel()] = $this->factory()->newFillFieldInstance($field)->formatAsString($value);
+                $formated_fill_values[$field->getLabel()] = $this->factory()->newFillFieldInstance($field)->formatAsString($value);
             }
         }
 
-        return $formated_filled_values;
+        return $formated_fill_values;
     }
 
 
@@ -149,11 +149,32 @@ final class Repository
 
 
     /**
+     * @param string $fill_id
+     * @param string $field_id
+     *
+     * @return FillStorage|null
+     */
+    protected function getFillStorageByField(string $fill_id, string $field_id)/*:?FillStorage*/
+    {
+        /**
+         * @var FillStorage|null $fill_storage
+         */
+
+        $fill_storage = FillStorage::where([
+            "fill_id"  => $fill_id,
+            "field_id" => $field_id
+        ])->first();
+
+        return $fill_storage;
+    }
+
+
+    /**
      * @param string|null $fill_id
      *
      * @return array
      */
-    public function getFilledValues(/*?*/ string $fill_id = null) : array
+    public function getFillValues(/*?*/ string $fill_id = null) : array
     {
         if ($fill_id === null) {
             if (isset($_SESSION[self::SESSION_TEMP_FIELD_VALUES_STORAGE])) {
@@ -163,13 +184,31 @@ final class Repository
             return [];
         }
 
-        $filled_values = [];
+        $fill_values = [];
 
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
-            $filled_values[$fill_storage->getFieldId()] = $fill_storage->getFieldValue();
+            $fill_values[$fill_storage->getFieldId()] = $fill_storage->getFillValue();
         }
 
-        return $filled_values;
+        return $fill_values;
+    }
+
+
+    /**
+     * @param string $fill_id
+     * @param string $field_id
+     *
+     * @return mixed
+     */
+    public function getFillValueByField(string $fill_id, string $field_id)
+    {
+        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
+
+        if ($fill_storage !== null) {
+            return $fill_storage->getFillValue();
+        }
+
+        return null;
     }
 
 
@@ -184,35 +223,48 @@ final class Repository
 
     /**
      * @param string|null $fill_id
-     * @param array|null  $filled_values
+     * @param array|null  $fill_values
      */
-    public function storeFilledValues(/*?*/ string $fill_id = null, /*?*/ array $filled_values = null)/*:void*/
+    public function storeFillValues(/*?*/ string $fill_id = null, /*?*/ array $fill_values = null)/*:void*/
     {
         if ($fill_id !== null) {
-            if ($filled_values === null) {
+            if ($fill_values === null) {
                 if (isset($_SESSION[self::SESSION_TEMP_FIELD_VALUES_STORAGE])) {
-                    $filled_values = (array) ilSession::get(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
+                    $fill_values = (array) ilSession::get(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
 
                     ilSession::clear(self::SESSION_TEMP_FIELD_VALUES_STORAGE);
                 }
             }
 
-            $this->deleteFillStorages($fill_id);
-
-            foreach ($filled_values as $field_id => $filled_value) {
-                $fill_storage = $this->factory()->newFillStorageInstance();
-
-                $fill_storage->setFillId($fill_id);
-
-                $fill_storage->setFieldId($field_id);
-
-                $fill_storage->setFieldValue($filled_value);
-
-                $this->storeFillStorage($fill_storage);
+            foreach ($fill_values as $field_id => $fill_value) {
+                $this->storeFillValue($fill_id, $field_id, $fill_value);
             }
         } else {
-            ilSession::set(self::SESSION_TEMP_FIELD_VALUES_STORAGE, $filled_values);
+            ilSession::set(self::SESSION_TEMP_FIELD_VALUES_STORAGE, $fill_values);
         }
+    }
+
+
+    /**
+     * @param string $fill_id
+     * @param string $field_id
+     * @param mixed  $fill_value
+     */
+    public function storeFillValue(string $fill_id, string $field_id, $fill_value)
+    {
+        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
+
+        if ($fill_storage === null) {
+            $fill_storage = $this->factory()->newFillStorageInstance();
+
+            $fill_storage->setFillId($fill_id);
+
+            $fill_storage->setFieldId($field_id);
+        }
+
+        $fill_storage->setFillValue($fill_value);
+
+        $this->storeFillStorage($fill_storage);
     }
 
 

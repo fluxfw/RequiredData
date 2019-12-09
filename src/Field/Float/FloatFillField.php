@@ -49,8 +49,8 @@ class FloatFillField extends IntegerFillField
     /**
      * @inheritDoc
      */
-    public function formatAsJson($filled_value)
+    public function formatAsJson($fill_value)
     {
-        return floatval($filled_value);
+        return floatval($fill_value);
     }
 }

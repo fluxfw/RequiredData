@@ -45,8 +45,8 @@ class MultilineTextFillField extends TextFillField
     /**
      * @inheritDoc
      */
-    public function formatAsString($filled_value) : string
+    public function formatAsString($fill_value) : string
     {
-        return nl2br(parent::formatAsString($filled_value), false);
+        return nl2br(parent::formatAsString($fill_value), false);
     }
 }
