@@ -113,7 +113,7 @@ class FillStorage extends ActiveRecord
         $field_value = $this->{$field_name};
 
         switch ($field_name) {
-            case "field_value":
+            case "fill_value":
                 return json_encode($field_value);
 
             default:
@@ -128,7 +128,7 @@ class FillStorage extends ActiveRecord
     public function wakeUp(/*string*/ $field_name, $field_value)
     {
         switch ($field_name) {
-            case "field_value":
+            case "fill_value":
                 return json_decode($field_value, true);
 
             default:
