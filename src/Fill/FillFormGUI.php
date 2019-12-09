@@ -21,7 +21,7 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @var array
      */
-    protected $filled_values;
+    protected $fill_values;
 
 
     /**
@@ -31,7 +31,7 @@ class FillFormGUI extends PropertyFormGUI
      */
     public function __construct(AbstractFillCtrl $parent)
     {
-        $this->filled_values = self::requiredData()->fills()->getFilledValues($parent->getFillId());
+        $this->fill_values = self::requiredData()->fills()->getFillValues($parent->getFillId());
 
         parent::__construct($parent);
     }
@@ -46,7 +46,7 @@ class FillFormGUI extends PropertyFormGUI
             case (strpos($key, "field_") === 0):
                 $field_id = substr($key, strlen("field_"));
 
-                return $this->filled_values[$field_id];
+                return $this->fill_values[$field_id];
 
             default:
                 return null;
@@ -110,7 +110,7 @@ class FillFormGUI extends PropertyFormGUI
             case (strpos($key, "field_") === 0):
                 $field_id = substr($key, strlen("field_"));
 
-                $this->filled_values[$field_id] = $value;
+                $this->fill_values[$field_id] = $value;
                 break;
 
             default:
@@ -128,9 +128,9 @@ class FillFormGUI extends PropertyFormGUI
             return false;
         }
 
-        $this->filled_values = self::requiredData()->fills()->formatAsJsons($this->parent->getParentContext(), $this->parent->getParentId(), $this->filled_values);
+        $this->fill_values = self::requiredData()->fills()->formatAsJsons($this->parent->getParentContext(), $this->parent->getParentId(), $this->fill_values);
 
-        self::requiredData()->fills()->storeFilledValues($this->parent->getFillId(), $this->filled_values);
+        self::requiredData()->fills()->storeFillValues($this->parent->getFillId(), $this->fill_values);
 
         return true;
     }

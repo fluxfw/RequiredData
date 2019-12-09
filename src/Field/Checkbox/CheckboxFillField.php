@@ -46,18 +46,18 @@ class CheckboxFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function formatAsJson($filled_value)
+    public function formatAsJson($fill_value)
     {
-        return boolval($filled_value);
+        return boolval($fill_value);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function formatAsString($filled_value) : string
+    public function formatAsString($fill_value) : string
     {
-        if ($filled_value) {
+        if ($fill_value) {
             $img = ilUtil::getImagePath("icon_ok.svg");
         } else {
             $img = ilUtil::getImagePath("icon_not_ok.svg");

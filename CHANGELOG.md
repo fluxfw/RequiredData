@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.0]
+- get or store fill value by field
+
 ## [0.2.2]
 - `FillStorage`
 

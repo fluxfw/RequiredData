@@ -46,19 +46,19 @@ class MultiSelectFillField extends SelectFillField
     /**
      * @inheritDoc
      */
-    public function formatAsJson($filled_value)
+    public function formatAsJson($fill_value)
     {
-        return (array) ($filled_value);
+        return (array) ($fill_value);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function formatAsString($filled_value) : string
+    public function formatAsString($fill_value) : string
     {
         return nl2br(implode("\n", array_map(function (string $value) : string {
             return strval($this->field->getSelectOptions()[$value]);
-        }, (array) ($filled_value))), false);
+        }, (array) ($fill_value))), false);
     }
 }

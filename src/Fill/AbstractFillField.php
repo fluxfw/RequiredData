@@ -42,17 +42,17 @@ abstract class AbstractFillField
 
 
     /**
-     * @param mixed $filled_value
+     * @param mixed $fill_value
      *
      * @return mixed
      */
-    public abstract function formatAsJson($filled_value);
+    public abstract function formatAsJson($fill_value);
 
 
     /**
-     * @param mixed $filled_value
+     * @param mixed $fill_value
      *
      * @return string
      */
-    public abstract function formatAsString($filled_value) : string;
+    public abstract function formatAsString($fill_value) : string;
 }

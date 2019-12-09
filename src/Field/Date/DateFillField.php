@@ -48,17 +48,17 @@ class DateFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function formatAsJson($filled_value)
+    public function formatAsJson($fill_value)
     {
-        return intval($filled_value instanceof ilDateTime ? $filled_value->getUnixTime() : $filled_value);
+        return intval($fill_value instanceof ilDateTime ? $fill_value->getUnixTime() : $fill_value);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function formatAsString($filled_value) : string
+    public function formatAsString($fill_value) : string
     {
-        return ilDatePresentation::formatDate(new ilDate(intval($filled_value), IL_CAL_UNIX));
+        return ilDatePresentation::formatDate(new ilDate(intval($fill_value), IL_CAL_UNIX));
     }
 }
