@@ -3,6 +3,7 @@
 namespace srag\RequiredData\Fill;
 
 use ilSession;
+use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
 use srag\DIC\DICTrait;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
@@ -209,6 +210,32 @@ final class Repository
         }
 
         return null;
+    }
+
+
+    /**
+     * @param int $parent_context
+     * @param int $parent_id
+     *
+     * @return array
+     */
+    public function getFormFields(int $parent_context, int $parent_id) : array
+    {
+        $fields = [];
+
+        foreach (self::requiredData()->fields()->getFields($parent_context, $parent_id) as $field) {
+            $fields["field_" . $field->getId()] = array_merge(
+                [
+                    "setTitle" => $field->getLabel(),
+                    "setInfo"  => $field->getDescription()
+                ],
+                self::requiredData()->fills()->factory()->newFillFieldInstance($field)->getFormFields(),
+                [
+                    PropertyFormGUI::PROPERTY_REQUIRED => $field->isRequired()
+                ]);
+        }
+
+        return $fields;
     }
 
 
