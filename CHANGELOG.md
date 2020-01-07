@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.3]
+- Possibility to keep field id in `formatAsStrings`
+
 ## [0.4.2]
 - `getFormFields`
 
