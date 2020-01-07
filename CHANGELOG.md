@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.2]
+- `getFormFields`
+
 ## [0.4.1]
 - Fix fill working without fields
 
