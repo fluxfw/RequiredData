@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.4]
+- Fix dropdown usability
+
 ## [0.4.3]
 - Possibility to keep field id in `formatAsStrings`
 
