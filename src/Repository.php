@@ -7,8 +7,8 @@ use srag\DIC\DICTrait;
 use srag\DIC\Plugin\Pluginable;
 use srag\DIC\Plugin\PluginInterface;
 use srag\DIC\Util\LibraryLanguageInstaller;
-use srag\RequiredData\Field\Repository as FieldRepository;
-use srag\RequiredData\Fill\Repository as FillRepository;
+use srag\RequiredData\Field\Repository as FieldsRepository;
+use srag\RequiredData\Fill\Repository as FillsRepository;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -72,20 +72,20 @@ final class Repository implements Pluginable
 
 
     /**
-     * @return FieldRepository
+     * @return FieldsRepository
      */
-    public function fields() : FieldRepository
+    public function fields() : FieldsRepository
     {
-        return FieldRepository::getInstance();
+        return FieldsRepository::getInstance();
     }
 
 
     /**
-     * @return FillRepository
+     * @return FillsRepository
      */
-    public function fills() : FillRepository
+    public function fills() : FillsRepository
     {
-        return FillRepository::getInstance();
+        return FillsRepository::getInstance();
     }
 
 
