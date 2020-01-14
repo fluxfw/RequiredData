@@ -19,11 +19,6 @@ class FillStorage extends ActiveRecord
 
     use DICTrait;
     use RequiredDataTrait;
-    /**
-     * @var string
-     *
-     * @abstract
-     */
     const TABLE_NAME_SUFFIX = "store";
 
 
@@ -32,7 +27,7 @@ class FillStorage extends ActiveRecord
      */
     public static function getTableName() : string
     {
-        return self::requiredData()->getTableNamePrefix() . "_fll_" . static::TABLE_NAME_SUFFIX;
+        return self::requiredData()->getTableNamePrefix() . "_fll_" . self::TABLE_NAME_SUFFIX;
     }
 
 
@@ -41,7 +36,7 @@ class FillStorage extends ActiveRecord
      */
     public function getConnectorContainerName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -52,7 +47,7 @@ class FillStorage extends ActiveRecord
      */
     public static function returnDbTableName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
