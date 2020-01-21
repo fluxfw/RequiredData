@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.1]
+- Empty select text
+
 ## [0.5.0]
 - Email field
 
