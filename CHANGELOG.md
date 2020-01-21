@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.3]
+- Empty select text
+
 ## [0.5.2]
 - Empty select text
 
