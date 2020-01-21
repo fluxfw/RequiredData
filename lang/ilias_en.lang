@@ -19,6 +19,7 @@ required_data_label#:#Label
 required_data_max_value#:#Max value
 required_data_min_value#:#Min value
 required_data_options#:#Options
+required_data_please_select#:#bitte wählen
 required_data_remove#:#Remove
 required_data_remove_field#:#Remove field
 required_data_remove_field_confirm#:#Are you really want to remove the field: %s ?
