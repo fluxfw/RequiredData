@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.0]
+- Email field
+
 ## [0.4.8]
 - Fix keep field id
 
