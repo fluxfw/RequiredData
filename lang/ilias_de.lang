@@ -32,6 +32,7 @@ required_data_saved_field#:#Feld %s gespeichert
 required_data_type#:#Typ
 required_data_type_checkboxfield#:#Checkbox
 required_data_type_datefield#:#Datum
+required_data_type_emailfield#:#E-Mail
 required_data_type_floatfield#:#Kommezahl
 required_data_type_integerfield#:#Ganzahl
 required_data_type_multilinetextfield#:#Mehrzeiliges-Text

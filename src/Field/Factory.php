@@ -5,6 +5,7 @@ namespace srag\RequiredData\Field;
 use srag\DIC\DICTrait;
 use srag\RequiredData\Field\Checkbox\CheckboxField;
 use srag\RequiredData\Field\Date\DateField;
+use srag\RequiredData\Field\Email\EmailField;
 use srag\RequiredData\Field\Float\FloatField;
 use srag\RequiredData\Field\Integer\IntegerField;
 use srag\RequiredData\Field\MultilineText\MultilineTextField;
@@ -53,6 +54,7 @@ final class Factory
         = [
             CheckboxField::class,
             DateField::class,
+            EmailField::class,
             FloatField::class,
             IntegerField::class,
             MultilineTextField::class,
