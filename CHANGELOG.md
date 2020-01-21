@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.8]
+- Fix keep field id
+
 ## [0.4.7]
 - Fix checkbox field image
 
