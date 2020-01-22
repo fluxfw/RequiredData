@@ -8,6 +8,7 @@ required_data_count_decimals#:#Dezimalstellen beschränken
 required_data_description#:#Beschreibung
 required_data_disable_fields#:#Felder deaktivieren
 required_data_disabled_fields#:#Felder deaktiviert
+required_data_dynamic_value#:#Aktueller Wert: %s
 required_data_edit_field#:#Feld bearbeiten
 required_data_enable_fields#:#Felder aktivieren
 required_data_enabled#:#Aktiviert
