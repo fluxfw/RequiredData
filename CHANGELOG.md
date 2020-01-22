@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.6.0]
+- `DynamicValue`
+
 ## [0.5.6]
 - Use type for get fields
 
