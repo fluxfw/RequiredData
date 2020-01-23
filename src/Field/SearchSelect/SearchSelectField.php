@@ -2,7 +2,7 @@
 
 namespace srag\RequiredData\Field\SearchSelect;
 
-use srag\RequiredData\Field\Select\SelectField;
+use srag\RequiredData\Field\MultiSearchSelect\MultiSearchSelectField;
 
 /**
  * Class SearchSelectField
@@ -11,7 +11,7 @@ use srag\RequiredData\Field\Select\SelectField;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SearchSelectField extends SelectField
+class SearchSelectField extends MultiSearchSelectField
 {
 
     const TABLE_NAME_SUFFIX = "sesel";

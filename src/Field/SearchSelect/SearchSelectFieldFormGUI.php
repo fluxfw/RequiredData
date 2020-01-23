@@ -3,7 +3,7 @@
 namespace srag\RequiredData\Field\SearchSelect;
 
 use srag\RequiredData\Field\FieldCtrl;
-use srag\RequiredData\Field\Select\SelectFieldFormGUI;
+use srag\RequiredData\Field\MultiSearchSelect\MultiSearchSelectFieldFormGUI;
 
 /**
  * Class SearchSelectFieldFormGUI
@@ -12,7 +12,7 @@ use srag\RequiredData\Field\Select\SelectFieldFormGUI;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SearchSelectFieldFormGUI extends SelectFieldFormGUI
+class SearchSelectFieldFormGUI extends MultiSearchSelectFieldFormGUI
 {
 
     /**
