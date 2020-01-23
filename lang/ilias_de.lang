@@ -41,6 +41,7 @@ required_data_type_multilinetextfield#:#Mehrzeiliges-Text
 required_data_type_multisearchselectfield#:#Mehrfach-Suche-Auswahl
 required_data_type_multiselectfield#:#Mehrfach-Auswahl
 required_data_type_radiofield#:#Radio
+required_data_type_searchselectfield#:#Suche-Auswahl
 required_data_type_selectfield#:#Auswahl
 required_data_type_textfield#:#Text
 required_data_value#:#Wert

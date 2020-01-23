@@ -41,6 +41,7 @@ required_data_type_multilinetextfield#:#Multiline text
 required_data_type_multisearchselectfield#:#Multi search select
 required_data_type_multiselectfield#:#Multi select
 required_data_type_radiofield#:#Radio
+required_data_type_searchselectfield#:#Search select
 required_data_type_selectfield#:#Select
 required_data_type_textfield#:#Text
 required_data_value#:#Value

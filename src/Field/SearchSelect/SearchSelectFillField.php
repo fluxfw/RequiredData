@@ -1,23 +1,23 @@
 <?php
 
-namespace srag\RequiredData\Field\MultiSearchSelect;
+namespace srag\RequiredData\Field\SearchSelect;
 
 use srag\CustomInputGUIs\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
-use srag\RequiredData\Field\MultiSelect\MultiSelectFillField;
+use srag\RequiredData\Field\Select\SelectFillField;
 
 /**
- * Class MultiSearchSelectFillField
+ * Class SearchSelectFillField
  *
- * @package srag\RequiredData\Field\MultiSearchSelect
+ * @package srag\RequiredData\Field\SearchSelect
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class MultiSearchSelectFillField extends MultiSelectFillField
+class SearchSelectFillField extends SelectFillField
 {
 
     /**
-     * @var MultiSearchSelectField
+     * @var SearchSelectField
      */
     protected $field;
 
@@ -25,7 +25,7 @@ class MultiSearchSelectFillField extends MultiSelectFillField
     /**
      * @inheritDoc
      */
-    public function __construct(MultiSearchSelectField $field)
+    public function __construct(SearchSelectField $field)
     {
         parent::__construct($field);
     }
@@ -38,7 +38,8 @@ class MultiSearchSelectFillField extends MultiSelectFillField
     {
         return [
             PropertyFormGUI::PROPERTY_CLASS   => MultiSelectSearchNewInputGUI::class,
-            PropertyFormGUI::PROPERTY_OPTIONS => $this->field->getSelectOptions()
+            PropertyFormGUI::PROPERTY_OPTIONS => $this->field->getSelectOptions(),
+            "setLimitCount"                   => 1
         ];
     }
 }
