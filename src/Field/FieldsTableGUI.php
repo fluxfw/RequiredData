@@ -53,7 +53,7 @@ class FieldsTableGUI extends TableGUI
                 break;
 
             default:
-                $column = Items::getter($field, $column);
+                $column = htmlspecialchars(Items::getter($field, $column));
                 break;
         }
 
