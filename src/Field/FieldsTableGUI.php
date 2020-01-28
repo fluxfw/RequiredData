@@ -52,6 +52,10 @@ class FieldsTableGUI extends TableGUI
                 $column = self::output()->getHTML(self::dic()->ui()->factory()->image()->standard($column, ""));
                 break;
 
+            case "field_description":
+                $column = $field->getFieldDescription();
+                break;
+
             default:
                 $column = htmlspecialchars(Items::getter($field, $column));
                 break;
