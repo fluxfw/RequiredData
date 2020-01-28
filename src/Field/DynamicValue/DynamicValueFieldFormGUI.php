@@ -3,6 +3,7 @@
 namespace srag\RequiredData\Field\DynamicValue;
 
 use srag\RequiredData\Field\AbstractFieldFormGUI;
+use srag\RequiredData\Field\FieldCtrl;
 
 /**
  * Class DynamicValueFieldFormGUI
@@ -18,4 +19,13 @@ abstract class DynamicValueFieldFormGUI extends AbstractFieldFormGUI
      * @var DynamicValueField
      */
     protected $object;
+
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(FieldCtrl $parent, DynamicValueField $object)
+    {
+        parent::__construct($parent, $object);
+    }
 }
