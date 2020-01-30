@@ -2,6 +2,7 @@
 
 namespace srag\RequiredData\Field\DynamicValue;
 
+use arConnector;
 use srag\RequiredData\Field\AbstractField;
 use srag\RequiredData\Field\FieldsCtrl;
 
@@ -29,6 +30,17 @@ abstract class DynamicValueField extends AbstractField
     /**
      * @inheritDoc
      */
+    public function __construct(/*int*/ $primary_key_value = 0, arConnector $connector = null)
+    {
+        $this->hide = $this->getInitHide();
+
+        parent::__construct($primary_key_value, $connector);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getFieldDescription() : string
     {
         return htmlspecialchars(self::requiredData()->getPlugin()->translate("dynamic_value", FieldsCtrl::LANG_MODULE, [$this->deliverDynamicValue()]));
@@ -39,6 +51,12 @@ abstract class DynamicValueField extends AbstractField
      * @return string
      */
     public abstract function deliverDynamicValue() : string;
+
+
+    /**
+     * @return bool
+     */
+    protected abstract function getInitHide() : bool;
 
 
     /**
