@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.10.0]
+- Make dynamic value fields hide
+- Take first as default if a select field has only one
+
 ## [0.9.0]
 - Field name
 
