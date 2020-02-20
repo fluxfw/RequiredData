@@ -5,6 +5,7 @@ namespace srag\RequiredData\Field;
 use ilConfirmationGUI;
 use ilUtil;
 use srag\DIC\DICTrait;
+use srag\RequiredData\Field\StaticMultiSearchSelect\StaticMultiSearchSelectAjaxAutoCompleteCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -29,7 +30,6 @@ class FieldCtrl
     const CMD_MOVE_FIELD_UP = "moveFieldUp";
     const CMD_REMOVE_FIELD = "removeField";
     const CMD_REMOVE_FIELD_CONFIRM = "removeFieldConfirm";
-    const CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE = "staticMultiSearchSelectGetDataAutoComplete";
     const CMD_UPDATE_FIELD = "updateField";
     const GET_PARAM_FIELD_ID = "field_id";
     const GET_PARAM_FIELD_TYPE = "field_type";
@@ -73,6 +73,9 @@ class FieldCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
+            case StaticMultiSearchSelectAjaxAutoCompleteCtrl::class:
+                self::dic()->ctrl()->redirect(new StaticMultiSearchSelectAjaxAutoCompleteCtrl($this));
+
             default:
                 $cmd = self::dic()->ctrl()->getCmd();
 
@@ -85,7 +88,6 @@ class FieldCtrl
                     case self::CMD_MOVE_FIELD_UP:
                     case self::CMD_REMOVE_FIELD:
                     case self::CMD_REMOVE_FIELD_CONFIRM:
-                    case self::CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE:
                     case self::CMD_UPDATE_FIELD:
                         $this->{$cmd}();
                         break;
@@ -207,28 +209,6 @@ class FieldCtrl
     /**
      *
      */
-    protected function staticMultiSearchSelectGetDataAutoComplete()/*:void*/
-    {
-        $search = strval(filter_input(INPUT_GET, "term"));
-
-        $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
-
-        $options = [];
-
-        foreach ($form->deliverPossibleOptions($search) as $id => $title) {
-            $options[] = [
-                "id"   => $id,
-                "text" => $title
-            ];
-        }
-
-        self::output()->outputJSON(["results" => $options]);
-    }
-
-
-    /**
-     *
-     */
     protected function updateField()/*: void*/
     {
         $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
@@ -276,6 +256,15 @@ class FieldCtrl
         ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_BACK);
+    }
+
+
+    /**
+     * @return AbstractField
+     */
+    public function getField() : AbstractField
+    {
+        return $this->field;
     }
 
 
