@@ -73,7 +73,7 @@ class FieldCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case StaticMultiSearchSelectAjaxAutoCompleteCtrl::class:
+            case strtolower(StaticMultiSearchSelectAjaxAutoCompleteCtrl::class):
                 self::dic()->ctrl()->redirect(new StaticMultiSearchSelectAjaxAutoCompleteCtrl($this));
                 break;
 
