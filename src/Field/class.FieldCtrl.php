@@ -75,6 +75,7 @@ class FieldCtrl
         switch (strtolower($next_class)) {
             case StaticMultiSearchSelectAjaxAutoCompleteCtrl::class:
                 self::dic()->ctrl()->redirect(new StaticMultiSearchSelectAjaxAutoCompleteCtrl($this));
+                break;
 
             default:
                 $cmd = self::dic()->ctrl()->getCmd();
