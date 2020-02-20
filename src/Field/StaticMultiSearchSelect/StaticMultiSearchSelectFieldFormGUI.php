@@ -2,6 +2,7 @@
 
 namespace srag\RequiredData\Field\StaticMultiSearchSelect;
 
+use srag\CustomInputGUIs\MultiSelectSearchNewInputGUI\AbstractAjaxAutoCompleteCtrl;
 use srag\CustomInputGUIs\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Field\MultiSearchSelect\MultiSearchSelectFieldFormGUI;
@@ -19,15 +20,15 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
     /**
      * @var StaticMultiSearchSelectField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, StaticMultiSearchSelectField $object)
+    public function __construct(FieldCtrl $parent, StaticMultiSearchSelectField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 
 
@@ -40,7 +41,7 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
             case "options":
                 return array_map(function (array $option) : string {
                     return strval($option["value"]);
-                }, $this->object->getOptions());
+                }, $this->field->getOptions());
 
             default:
                 return parent::getValue($key);
@@ -61,7 +62,7 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
                 "options" => [
                     self::PROPERTY_CLASS      => MultiSelectSearchNewInputGUI::class,
                     self::PROPERTY_REQUIRED   => true,
-                    "setAjaxAutoCompleteCtrl" => new StaticMultiSearchSelectAjaxAutoCompleteCtrl($this->parent)
+                    "setAjaxAutoCompleteCtrl" => new SMSSAjaxAutoCompleteCtrl($this->parent)
                 ]
             ]
         );
@@ -75,11 +76,11 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
     {
         switch ($key) {
             case "options":
-                $this->object->setOptions(array_map(function (string $value) : array {
+                $this->field->setOptions(array_map(function (string $value) : array {
                     return [
                         "label" => [
                             "default" => [
-                                "label" => $this->deliverPossibleOptions()[$value]
+                                "label" => current($this->getAjaxAutoCompleteCtrl()->fillOptions([$value]))
                             ]
                         ],
                         "value" => $value
@@ -95,9 +96,7 @@ abstract class StaticMultiSearchSelectFieldFormGUI extends MultiSearchSelectFiel
 
 
     /**
-     * @param string|null $search
-     *
-     * @return array
+     * @return AbstractAjaxAutoCompleteCtrl
      */
-    public abstract function deliverPossibleOptions(/*?*/ string $search = null) : array;
+    public abstract function getAjaxAutoCompleteCtrl() : AbstractAjaxAutoCompleteCtrl;
 }

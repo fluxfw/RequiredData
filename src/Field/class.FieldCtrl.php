@@ -5,7 +5,7 @@ namespace srag\RequiredData\Field;
 use ilConfirmationGUI;
 use ilUtil;
 use srag\DIC\DICTrait;
-use srag\RequiredData\Field\StaticMultiSearchSelect\StaticMultiSearchSelectAjaxAutoCompleteCtrl;
+use srag\RequiredData\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -16,6 +16,7 @@ use srag\RequiredData\Utils\RequiredDataTrait;
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @ilCtrl_isCalledBy srag\RequiredData\Field\FieldCtrl: srag\RequiredData\Field\FieldsCtrl
+ * @ilCtrl_isCalledBy srag\RequiredData\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl: srag\RequiredData\Field\FieldCtrl
  */
 class FieldCtrl
 {
@@ -73,8 +74,8 @@ class FieldCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(StaticMultiSearchSelectAjaxAutoCompleteCtrl::class):
-                self::dic()->ctrl()->redirect(new StaticMultiSearchSelectAjaxAutoCompleteCtrl($this));
+            case strtolower(SMSSAjaxAutoCompleteCtrl::class):
+                self::dic()->ctrl()->forwardCommand(new SMSSAjaxAutoCompleteCtrl($this));
                 break;
 
             default:

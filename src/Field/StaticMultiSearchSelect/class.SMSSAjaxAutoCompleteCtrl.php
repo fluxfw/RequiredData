@@ -7,13 +7,13 @@ use srag\RequiredData\Field\FieldCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
- * Class StaticMultiSearchSelectAjaxAutoCompleteCtrl
+ * Class SMSSAjaxAutoCompleteCtrl
  *
  * @package srag\RequiredData\Field\StaticMultiSearchSelect
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class StaticMultiSearchSelectAjaxAutoCompleteCtrl extends AbstractAjaxAutoCompleteCtrl
+class SMSSAjaxAutoCompleteCtrl extends AbstractAjaxAutoCompleteCtrl
 {
 
     use RequiredDataTrait;
@@ -24,7 +24,7 @@ class StaticMultiSearchSelectAjaxAutoCompleteCtrl extends AbstractAjaxAutoComple
 
 
     /**
-     * StaticMultiSearchSelectAjaxAutoCompleteCtrl constructor
+     * SMSSAjaxAutoCompleteCtrl constructor
      *
      * @param FieldCtrl $parent
      */
@@ -43,7 +43,7 @@ class StaticMultiSearchSelectAjaxAutoCompleteCtrl extends AbstractAjaxAutoComple
     {
         $form = self::requiredData()->fields()->factory()->newFormInstance($this->parent, $this->parent->getField());
 
-        return $form->deliverPossibleOptions($search);
+        return $form->getAjaxAutoCompleteCtrl()->searchOptions($search);
     }
 
 
@@ -52,6 +52,8 @@ class StaticMultiSearchSelectAjaxAutoCompleteCtrl extends AbstractAjaxAutoComple
      */
     public function fillOptions(array $ids) : array
     {
-        // TODO: Implement fillOptions() method.
+        $form = self::requiredData()->fields()->factory()->newFormInstance($this->parent, $this->parent->getField());
+
+        return $form->getAjaxAutoCompleteCtrl()->fillOptions($ids);
     }
 }
