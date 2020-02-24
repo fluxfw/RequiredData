@@ -21,7 +21,7 @@ final class Repository
     use DICTrait;
     use RequiredDataTrait;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
