@@ -66,8 +66,8 @@ class FieldCtrl
             ->getFieldById($this->parent->getParentContext(), $this->parent->getParentId(), strval(filter_input(INPUT_GET, self::GET_PARAM_FIELD_TYPE)),
                 intval(filter_input(INPUT_GET, self::GET_PARAM_FIELD_ID)));
 
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_FIELD_TYPE);
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_FIELD_ID);
+        self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_TYPE, $this->field->getType());
+        self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_ID, $this->field->getFieldId());
 
         $this->setTabs();
 
