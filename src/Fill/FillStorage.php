@@ -94,7 +94,7 @@ class FillStorage extends ActiveRecord
      * @param int              $primary_key_value
      * @param arConnector|null $connector
      */
-    public function __construct(/*int*/ $primary_key_value = 0, arConnector $connector = null)
+    public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
     {
         parent::__construct($primary_key_value, $connector);
     }
@@ -144,7 +144,7 @@ class FillStorage extends ActiveRecord
     /**
      * @param int $fill_storage_id
      */
-    public function setFillStorageId(int $fill_storage_id)/* : void*/
+    public function setFillStorageId(int $fill_storage_id) : void
     {
         $this->fill_storage_id = $fill_storage_id;
     }
@@ -162,7 +162,7 @@ class FillStorage extends ActiveRecord
     /**
      * @param string $fill_id
      */
-    public function setFillId(string $fill_id)/* : void*/
+    public function setFillId(string $fill_id) : void
     {
         $this->fill_id = $fill_id;
     }
@@ -180,7 +180,7 @@ class FillStorage extends ActiveRecord
     /**
      * @param string $field_id
      */
-    public function setFieldId(string $field_id)/* : void*/
+    public function setFieldId(string $field_id) : void
     {
         $this->field_id = $field_id;
     }
@@ -198,7 +198,7 @@ class FillStorage extends ActiveRecord
     /**
      * @param mixed $fill_value
      */
-    public function setFillValue($fill_value)/* : void*/
+    public function setFillValue($fill_value) : void
     {
         $this->fill_value = $fill_value;
     }
