@@ -141,13 +141,12 @@ final class Factory
 
     /**
      * @param FieldsCtrl $parent
-     * @param string     $cmd
      *
-     * @return FieldsTableGUI
+     * @return FieldsTable
      */
-    public function newTableInstance(FieldsCtrl $parent, string $cmd = FieldsCtrl::CMD_LIST_FIELDS) : FieldsTableGUI
+    public function newTableInstance(FieldsCtrl $parent) : FieldsTable
     {
-        $table = new FieldsTableGUI($parent, $cmd);
+        $table = new FieldsTable($parent);
 
         return $table;
     }

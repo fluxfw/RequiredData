@@ -108,11 +108,12 @@ class FieldsCtrl
      */
     protected function enableFields() : void
     {
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
+            ->fields()
+            ->factory()
+            ->newTableInstance($this)
+            ->build()
+            ->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -140,11 +141,12 @@ class FieldsCtrl
      */
     protected function disableFields() : void
     {
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
+            ->fields()
+            ->factory()
+            ->newTableInstance($this)
+            ->build()
+            ->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -174,11 +176,12 @@ class FieldsCtrl
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
 
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
+            ->fields()
+            ->factory()
+            ->newTableInstance($this)
+            ->build()
+            ->getTableId());
 
         /**
          * @var AbstractField[] $fields
