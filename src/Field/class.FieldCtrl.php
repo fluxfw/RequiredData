@@ -147,7 +147,16 @@ class FieldCtrl
      */
     protected function moveFieldDown()
     {
-        self::requiredData()->fields()->moveFieldDown($this->field);
+        list($type, $field_id) = explode("_", self::requiredData()->fields()->factory()->newTableInstance($this->parent)->build()->getBrowserFormat()->getActionRowId(self::requiredData()
+            ->fields()
+            ->factory()
+            ->newTableInstance($this->parent)
+            ->build()
+            ->getTableId()));
+
+        self::requiredData()->fields()->moveFieldDown(self::requiredData()
+            ->fields()
+            ->getFieldById($this->parent->getParentContext(), $this->parent->getParentId(), $type, $field_id));
 
         exit;
     }
@@ -158,7 +167,16 @@ class FieldCtrl
      */
     protected function moveFieldUp()
     {
-        self::requiredData()->fields()->moveFieldUp($this->field);
+        list($type, $field_id) = explode("_", self::requiredData()->fields()->factory()->newTableInstance($this->parent)->build()->getBrowserFormat()->getActionRowId(self::requiredData()
+            ->fields()
+            ->factory()
+            ->newTableInstance($this->parent)
+            ->build()
+            ->getTableId()));
+
+        self::requiredData()->fields()->moveFieldUp(self::requiredData()
+            ->fields()
+            ->getFieldById($this->parent->getParentContext(), $this->parent->getParentId(), $type, $field_id));
 
         exit;
     }

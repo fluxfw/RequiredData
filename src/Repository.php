@@ -3,6 +3,8 @@
 namespace srag\RequiredData;
 
 use LogicException;
+use srag\DataTable\Component\Factory as DataTableFactoryInterface;
+use srag\DataTable\Utils\DataTableTrait;
 use srag\DIC\DICTrait;
 use srag\DIC\Plugin\Pluginable;
 use srag\DIC\Plugin\PluginInterface;
@@ -23,6 +25,9 @@ final class Repository implements Pluginable
 
     use DICTrait;
     use RequiredDataTrait;
+    use DataTableTrait {
+        dataTable as protected _dataTable;
+    }
     /**
      * @var self|null
      */
@@ -62,6 +67,15 @@ final class Repository implements Pluginable
     private function __construct()
     {
 
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function dataTable() : DataTableFactoryInterface
+    {
+        return self::_dataTable();
     }
 
 
@@ -126,6 +140,8 @@ final class Repository implements Pluginable
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
+
+        $this->dataTable()->installLanguages($this->plugin);
     }
 
 
