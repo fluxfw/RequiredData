@@ -2,7 +2,6 @@
 
 namespace srag\RequiredData\Field\MultilineText;
 
-use ilTextAreaInputGUI;
 use srag\CustomInputGUIs\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\TextAreaInputGUI\TextAreaInputGUI;
 use srag\RequiredData\Field\Text\TextFillField;
