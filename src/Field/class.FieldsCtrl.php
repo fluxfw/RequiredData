@@ -97,7 +97,7 @@ class FieldsCtrl
      */
     protected function listFields() : void
     {
-        $table = self::requiredData()->fields()->factory()->newTableInstance($this);
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
 
         self::output()->output($table);
     }
@@ -108,12 +108,9 @@ class FieldsCtrl
      */
     protected function enableFields() : void
     {
-        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
-            ->fields()
-            ->factory()
-            ->newTableInstance($this)
-            ->build()
-            ->getTableId());
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
+
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -141,12 +138,9 @@ class FieldsCtrl
      */
     protected function disableFields() : void
     {
-        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
-            ->fields()
-            ->factory()
-            ->newTableInstance($this)
-            ->build()
-            ->getTableId());
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
+
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -176,12 +170,9 @@ class FieldsCtrl
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
 
-        $field_ids = self::requiredData()->fields()->factory()->newTableInstance($this)->build()->getBrowserFormat()->getMultipleActionRowIds(self::requiredData()
-            ->fields()
-            ->factory()
-            ->newTableInstance($this)
-            ->build()
-            ->getTableId());
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
+
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields
