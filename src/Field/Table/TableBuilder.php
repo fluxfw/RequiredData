@@ -38,10 +38,7 @@ class TableBuilder extends AbstractTableBuilder
     protected function buildTable() : Table
     {
         $columns = [
-            self::dataTableUI()->column()->column("sort", "")->withFormatter(self::dataTableUI()->column()->formatter()->actions()->sort(self::dic()
-                ->ctrl()
-                ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_UP, "", true),
-                self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true))),
+            self::dataTableUI()->column()->column("sort", "")->withFormatter(self::dataTableUI()->column()->formatter()->actions()->sort()),
             self::dataTableUI()->column()->column("enabled",
                 self::requiredData()->getPlugin()->translate("enabled", FieldsCtrl::LANG_MODULE))->withSortable(false)->withFormatter(self::dataTableUI()->column()->formatter()->check())
         ];
@@ -63,7 +60,7 @@ class TableBuilder extends AbstractTableBuilder
             self::dataTableUI()->column()->column("field_description",
                 self::requiredData()->getPlugin()->translate("field_description", FieldsCtrl::LANG_MODULE))->withSortable(false),
             self::dataTableUI()->column()->column("actions",
-                self::requiredData()->getPlugin()->translate("actions", FieldsCtrl::LANG_MODULE))->withFormatter(new ActionsFormatter())
+                self::requiredData()->getPlugin()->translate("actions", FieldsCtrl::LANG_MODULE))->withFormatter(self::dataTableUI()->column()->formatter()->actions()->actionsDropdown())
         ]);
 
         $table = self::dataTableUI()->table("fields_" . self::requiredData()->getPlugin()->getPluginObject()->getId(),
