@@ -4,6 +4,7 @@ namespace srag\RequiredData\Field;
 
 use ActiveRecord;
 use arConnector;
+use ILIAS\UI\Component\Component;
 use LogicException;
 use srag\CustomInputGUIs\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\DICTrait;
@@ -306,7 +307,7 @@ abstract class AbstractField extends ActiveRecord
 
 
     /**
-     * @return array
+     * @return Component[]
      */
     public function getActions() : array
     {
