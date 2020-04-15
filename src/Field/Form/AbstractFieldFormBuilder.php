@@ -128,8 +128,8 @@ abstract class AbstractFieldFormBuilder extends AbstractFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        foreach ($this->getFields() as $key => $value) {
-            Items::setter($this->field, $key, $value);
+        foreach (array_keys($this->getFields()) as $key) {
+            Items::setter($this->field, $key, $data[$key]);
         }
 
         self::requiredData()->fields()->storeField($this->field);
