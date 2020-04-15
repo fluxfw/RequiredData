@@ -103,7 +103,7 @@ abstract class AbstractFillCtrl
      */
     protected function fillFields() : void
     {
-        $form = self::requiredData()->fills()->factory()->newFillFormInstance($this);
+        $form = self::requiredData()->fills()->factory()->newFillFormBuilderInstance($this);
 
         self::output()->output($form, true);
     }
@@ -114,7 +114,7 @@ abstract class AbstractFillCtrl
      */
     protected function saveFields() : void
     {
-        $form = self::requiredData()->fills()->factory()->newFillFormInstance($this);
+        $form = self::requiredData()->fills()->factory()->newFillFormBuilderInstance($this);
 
         if (!$form->storeForm()) {
             self::output()->output($form, true);

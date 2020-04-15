@@ -55,6 +55,10 @@ final class Repository implements Pluginable
     /**
      * @var bool
      */
+    protected $enableGroups = false;
+    /**
+     * @var bool
+     */
     protected $enableNames = false;
 
 
@@ -146,6 +150,15 @@ final class Repository implements Pluginable
     /**
      * @return bool
      */
+    public function isEnableGroups() : bool
+    {
+        return $this->enableGroups;
+    }
+
+
+    /**
+     * @return bool
+     */
     public function isEnableNames() : bool
     {
         return $this->enableNames;
@@ -171,6 +184,19 @@ final class Repository implements Pluginable
     public function withTableNamePrefix(string $table_name_prefix) : self
     {
         $this->table_name_prefix = $table_name_prefix;
+
+        return $this;
+    }
+
+
+    /**
+     * @param bool $enableGroups
+     *
+     * @return self
+     */
+    public function withEnableGroups(bool $enableGroups) : self
+    {
+        $this->enableGroups = $enableGroups;
 
         return $this;
     }
