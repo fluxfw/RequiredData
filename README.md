@@ -113,7 +113,7 @@ Expand you plugin class for installing languages of the library to your plugin
 ```
 
 ### Own fields
-Extend `AbstractField`, `AbstractFieldFormGUI` and `AbstractFillField` (In same folder).
+Extend `AbstractField`, `AbstractFieldFormBuilder` and `AbstractFillField` (In same folder).
 
 You need to implement a new language variable `required_data_type_x` in your plugin language file.
 
@@ -131,7 +131,7 @@ Just extends the `StaticMultiSearchSelect` classes
 Just extends the `DynamicValue` classes
 
 ### Requirements
-* ILIAS 5.3 or ILIAS 5.4
+* ILIAS 5.4
 * PHP >=7.2
 
 ### Adjustment suggestions

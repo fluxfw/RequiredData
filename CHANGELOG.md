@@ -1,5 +1,9 @@
 # Changelog
 
+## [x]
+- Group fields
+- Remove ILIAS 5.3 support
+
 ## [0.12.3]
 - Fix
 
