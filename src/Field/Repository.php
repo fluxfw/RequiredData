@@ -18,6 +18,7 @@ final class Repository
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var self|null
      */

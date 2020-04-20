@@ -20,6 +20,7 @@ class CreateFieldFormBuilder extends AbstractFormBuilder
 {
 
     use RequiredDataTrait;
+
     /**
      * @var AbstractField|null
      */

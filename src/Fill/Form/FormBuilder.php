@@ -18,6 +18,7 @@ class FormBuilder extends AbstractFormBuilder
 {
 
     use RequiredDataTrait;
+
     /**
      * @var array
      */

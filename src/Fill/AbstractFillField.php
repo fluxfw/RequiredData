@@ -19,6 +19,7 @@ abstract class AbstractFillField
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var AbstractField
      */

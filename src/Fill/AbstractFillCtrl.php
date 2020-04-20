@@ -18,6 +18,7 @@ abstract class AbstractFillCtrl
 
     use DICTrait;
     use RequiredDataTrait;
+
     const CMD_BACK = "back";
     const CMD_CANCEL = "cancel";
     const CMD_FILL_FIELDS = "fillFields";

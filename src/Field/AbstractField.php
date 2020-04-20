@@ -24,6 +24,7 @@ abstract class AbstractField extends ActiveRecord
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var string
      *

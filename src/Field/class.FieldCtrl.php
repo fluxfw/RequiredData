@@ -25,6 +25,7 @@ class FieldCtrl
 
     use DICTrait;
     use RequiredDataTrait;
+
     const CMD_ADD_FIELD = "addField";
     const CMD_BACK = "back";
     const CMD_CREATE_FIELD = "createField";

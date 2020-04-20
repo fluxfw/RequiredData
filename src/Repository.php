@@ -25,6 +25,7 @@ final class Repository implements Pluginable
     use DICTrait;
     use RequiredDataTrait;
     use DataTableUITrait;
+
     /**
      * @var self|null
      */

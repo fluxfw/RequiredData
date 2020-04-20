@@ -19,6 +19,7 @@ final class Factory
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var self|null
      */

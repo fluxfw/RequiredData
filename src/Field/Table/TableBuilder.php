@@ -21,7 +21,6 @@ class TableBuilder extends AbstractTableBuilder
 
     use RequiredDataTrait;
 
-
     /**
      * @inheritDoc
      *

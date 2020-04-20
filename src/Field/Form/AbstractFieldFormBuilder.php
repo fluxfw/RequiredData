@@ -25,6 +25,7 @@ abstract class AbstractFieldFormBuilder extends AbstractFormBuilder
 {
 
     use RequiredDataTrait;
+
     /**
      * @var AbstractField
      */

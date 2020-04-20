@@ -19,6 +19,7 @@ class FieldsCtrl
 
     use DICTrait;
     use RequiredDataTrait;
+
     const CMD_CREATE_GROUP_OF_FIELDS = "createGroupOfFields";
     const CMD_DISABLE_FIELD = "disableFields";
     const CMD_ENABLE_FIELDS = "enableFields";

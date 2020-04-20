@@ -17,6 +17,7 @@ class SMSSAjaxAutoCompleteCtrl extends AbstractAjaxAutoCompleteCtrl
 {
 
     use RequiredDataTrait;
+
     /**
      * @var FieldCtrl
      */
