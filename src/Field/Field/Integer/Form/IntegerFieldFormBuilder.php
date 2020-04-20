@@ -119,13 +119,13 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        if ($data["min_value"]["value"] === "checked") {
+        if (boolval($data["min_value"]["value"])) {
             $data["min_value"] = intval($data["min_value"]["group_values"]["dependant_group"]["min_value"]);
         } else {
             $data["min_value"] = null;
         }
 
-        if ($data["max_value"]["value"] === "checked") {
+        if (boolval($data["max_value"]["value"])) {
             $data["max_value"] = intval($data["max_value"]["group_values"]["dependant_group"]["max_value"]);
         } else {
             $data["max_value"] = null;

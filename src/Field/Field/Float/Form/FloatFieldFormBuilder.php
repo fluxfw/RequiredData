@@ -91,7 +91,7 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        if ($data["count_decimals"]["value"] === "checked") {
+        if (boolval($data["count_decimals"]["value"])) {
             $data["count_decimals"] = intval($data["count_decimals"]["group_values"]["dependant_group"]["count_decimals"]);
         } else {
             $data["count_decimals"] = null;
