@@ -53,7 +53,7 @@ final class Factory
      *
      * @return FormBuilder
      */
-    public function newFillFormBuilderInstance(AbstractFillCtrl $parent) : FormBuilder
+    public function newFormBuilderInstance(AbstractFillCtrl $parent) : FormBuilder
     {
         $form = new FormBuilder($parent);
 
