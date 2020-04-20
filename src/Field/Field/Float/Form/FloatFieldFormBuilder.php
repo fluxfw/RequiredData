@@ -41,7 +41,7 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
 
         if ($this->field->getCountDecimals() !== null) {
             $data["count_decimals"] = [
-                "value"        => "checked",
+                "value"        => true,
                 "group_values" => [
                     "dependant_group" => [
                         "count_decimals" => $this->field->getCountDecimals()
@@ -50,8 +50,11 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
             ];
         } else {
             $data["count_decimals"] = [
-                "dependant_group" => [
-                    "count_decimals" => 0
+                "value"        => false,
+                "group_values" => [
+                    "dependant_group" => [
+                        "count_decimals" => 0
+                    ]
                 ]
             ];
         }
@@ -89,7 +92,7 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
     protected function storeData(array $data) : void
     {
         if ($data["count_decimals"]["value"] === "checked") {
-            $data["count_decimals"] = $data["count_decimals"]["group_values"]["dependant_group"]["count_decimals"];
+            $data["count_decimals"] = intval($data["count_decimals"]["group_values"]["dependant_group"]["count_decimals"]);
         } else {
             $data["count_decimals"] = null;
         }

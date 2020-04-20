@@ -80,7 +80,7 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
                 ],
                 "value" => $value
             ];
-        }, $data["options"]);
+        }, (array) $data["options"]);
 
         parent::storeData($data);
     }

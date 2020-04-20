@@ -41,7 +41,7 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
 
         if ($this->field->getMinValue() !== null) {
             $data["min_value"] = [
-                "value"        => "checked",
+                "value"        => true,
                 "group_values" => [
                     "dependant_group" => [
                         "min_value" => $this->field->getMinValue()
@@ -50,15 +50,18 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
             ];
         } else {
             $data["min_value"] = [
-                "dependant_group" => [
-                    "min_value" => 0
+                "value"        => false,
+                "group_values" => [
+                    "dependant_group" => [
+                        "min_value" => 0
+                    ]
                 ]
             ];
         }
 
         if ($this->field->getMaxValue() !== null) {
             $data["max_value"] = [
-                "value"        => "checked",
+                "value"        => true,
                 "group_values" => [
                     "dependant_group" => [
                         "max_value" => $this->field->getMaxValue()
@@ -67,8 +70,11 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
             ];
         } else {
             $data["max_value"] = [
-                "dependant_group" => [
-                    "max_value" => 0
+                "value"        => false,
+                "group_values" => [
+                    "dependant_group" => [
+                        "max_value" => 0
+                    ]
                 ]
             ];
         }
@@ -114,13 +120,13 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
     protected function storeData(array $data) : void
     {
         if ($data["min_value"]["value"] === "checked") {
-            $data["min_value"] = $data["min_value"]["group_values"]["dependant_group"]["min_value"];
+            $data["min_value"] = intval($data["min_value"]["group_values"]["dependant_group"]["min_value"]);
         } else {
             $data["min_value"] = null;
         }
 
         if ($data["max_value"]["value"] === "checked") {
-            $data["max_value"] = $data["max_value"]["group_values"]["dependant_group"]["max_value"];
+            $data["max_value"] = intval($data["max_value"]["group_values"]["dependant_group"]["max_value"]);
         } else {
             $data["max_value"] = null;
         }
