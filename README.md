@@ -131,7 +131,7 @@ Just extends the `StaticMultiSearchSelect` classes
 Just extends the `DynamicValue` classes
 
 ### Requirements
-* ILIAS 5.4
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.2
 
 ### Adjustment suggestions
