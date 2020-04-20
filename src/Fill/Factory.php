@@ -4,7 +4,7 @@ namespace srag\RequiredData\Fill;
 
 use srag\DIC\DICTrait;
 use srag\RequiredData\Field\AbstractField;
-use srag\RequiredData\Fill\Form\FillFormBuilder;
+use srag\RequiredData\Fill\Form\FormBuilder;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
@@ -50,11 +50,11 @@ final class Factory
     /**
      * @param AbstractFillCtrl $parent
      *
-     * @return FillFormBuilder
+     * @return FormBuilder
      */
-    public function newFillFormBuilderInstance(AbstractFillCtrl $parent) : FillFormBuilder
+    public function newFillFormBuilderInstance(AbstractFillCtrl $parent) : FormBuilder
     {
-        $form = new FillFormBuilder($parent);
+        $form = new FormBuilder($parent);
 
         return $form;
     }

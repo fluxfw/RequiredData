@@ -8,13 +8,13 @@ use srag\RequiredData\Fill\AbstractFillCtrl;
 use srag\RequiredData\Utils\RequiredDataTrait;
 
 /**
- * Class FillFormBuilder
+ * Class FormBuilder
  *
  * @package srag\RequiredData\Fill\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class FillFormBuilder extends AbstractFormBuilder
+class FormBuilder extends AbstractFormBuilder
 {
 
     use RequiredDataTrait;
