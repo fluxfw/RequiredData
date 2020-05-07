@@ -3,7 +3,6 @@
 namespace srag\RequiredData\Field\Field\Text;
 
 use ILIAS\UI\Component\Input\Field\Input;
-use srag\RequiredData\Field\Field\Text\TextField;
 use srag\RequiredData\Fill\AbstractFillField;
 
 /**
