@@ -70,17 +70,30 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
     {
         $fields = parent::getFields();
 
-        $fields += [
-            "count_decimals" => self::dic()
-                ->ui()
-                ->factory()
-                ->input()
-                ->field()
-                ->checkbox(self::requiredData()->getPlugin()->translate("count_decimals", FieldsCtrl::LANG_MODULE))
-                ->withDependantGroup(self::dic()->ui()->factory()->input()->field()->dependantGroup([
-                    "count_decimals" => self::dic()->ui()->factory()->input()->field()->numeric(self::requiredData()->getPlugin()->translate("count_decimals", FieldsCtrl::LANG_MODULE))
-                ]))
+        $count_decimals_fields = [
+            "count_decimals" => self::dic()->ui()->factory()->input()->field()->numeric(self::requiredData()->getPlugin()->translate("count_decimals", FieldsCtrl::LANG_MODULE))
         ];
+
+        if (self::version()->is6()) {
+            $fields += [
+                "count_decimals" => self::dic()
+                    ->ui()
+                    ->factory()
+                    ->input()
+                    ->field()
+                    ->optionalGroup($count_decimals_fields, self::requiredData()->getPlugin()->translate("count_decimals", FieldsCtrl::LANG_MODULE))
+            ];
+        } else {
+            $fields += [
+                "count_decimals" => self::dic()
+                    ->ui()
+                    ->factory()
+                    ->input()
+                    ->field()
+                    ->checkbox(self::requiredData()->getPlugin()->translate("count_decimals", FieldsCtrl::LANG_MODULE))
+                    ->withDependantGroup(self::dic()->ui()->factory()->input()->field()->dependantGroup($count_decimals_fields))
+            ];
+        }
 
         return $fields;
     }
@@ -91,10 +104,18 @@ class FloatFieldFormBuilder extends IntegerFieldFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        if (boolval($data["count_decimals"]["value"])) {
-            $data["count_decimals"] = intval($data["count_decimals"]["group_values"]["dependant_group"]["count_decimals"]);
+        if (self::version()->is6()) {
+            if (!empty($data["count_decimals"]["value"])) {
+                $data["count_decimals"] = intval($data["count_decimals"]["count_decimals"]);
+            } else {
+                $data["count_decimals"] = null;
+            }
         } else {
-            $data["count_decimals"] = null;
+            if (boolval($data["count_decimals"]["value"])) {
+                $data["count_decimals"] = intval($data["count_decimals"]["group_values"]["dependant_group"]["count_decimals"]);
+            } else {
+                $data["count_decimals"] = null;
+            }
         }
 
         parent::storeData($data);
