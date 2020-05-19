@@ -35,7 +35,7 @@ use RequiredDataTrait;
 ## RequiredData ActiveRecord
 First you need to init the `RequiredData` active record classes with your own table name prefix. Please add this very early in your plugin code
 ```php
-self::requiredData()->configs()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin());
+self::requiredData()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin());
 ```
 
 Add an update step to your `dbupdate.php`
@@ -49,7 +49,7 @@ Add an update step to your `dbupdate.php`
 
 and not forget to add an uninstaller step in your plugin class too
 ```php
-self::requiredData()->configs()->dropTables();
+self::requiredData()->dropTables();
 ```
 
 ## Ctrl classes
@@ -109,7 +109,7 @@ Expand you plugin class for installing languages of the library to your plugin
     public function updateLanguages(/*?array*/ $a_lang_keys = null):void {
 		parent::updateLanguages($a_lang_keys);
 
-		self::requiredData()->configs()->installLanguages();
+		self::requiredData()->installLanguages();
 	}
 ...
 ```
