@@ -1,7 +1,9 @@
 # Changelog
 
-## [x]
+## [0.13.0]
 - Group fields
+- New form
+- ILIAS 6 support
 - Remove ILIAS 5.3 support
 
 ## [0.12.3]
