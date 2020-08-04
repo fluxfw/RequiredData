@@ -27,7 +27,7 @@ class GroupField extends AbstractField
     {
         return array_merge(parent::getActions(), [
             self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("ungroup", FieldsCtrl::LANG_MODULE),
-                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_UNGROUP)),
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_UNGROUP))
         ]);
     }
 
