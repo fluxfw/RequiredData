@@ -51,7 +51,7 @@ class SMSSAjaxAutoCompleteCtrl extends AbstractAjaxAutoCompleteCtrl
     /**
      * @inheritDoc
      */
-    public function searchOptions(string $search = null) : array
+    public function searchOptions(/*?*/ string $search = null) : array
     {
         $form = self::requiredData()->fields()->factory()->newFormBuilderInstance($this->parent, $this->parent->getField());
 
