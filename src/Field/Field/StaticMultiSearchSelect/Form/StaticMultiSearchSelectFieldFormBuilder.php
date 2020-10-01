@@ -56,7 +56,7 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
                 ],
                 "value" => $value
             ];
-        }, (array) $data["options"]);
+        }, MultiSelectSearchNewInputGUI::cleanValues((array) $data["options"]));
 
         parent::storeData($data);
     }
