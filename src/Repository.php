@@ -7,7 +7,7 @@ use srag\DataTableUI\Implementation\Utils\DataTableUITrait;
 use srag\DIC\DICTrait;
 use srag\DIC\Plugin\Pluginable;
 use srag\DIC\Plugin\PluginInterface;
-use srag\DIC\Util\LibraryLanguageInstaller;
+use srag\LibraryLanguageInstaller\LibraryLanguageInstaller;
 use srag\RequiredData\Field\Repository as FieldsRepository;
 use srag\RequiredData\Fill\Repository as FillsRepository;
 use srag\RequiredData\Utils\RequiredDataTrait;
