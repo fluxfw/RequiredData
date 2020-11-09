@@ -1,7 +1,7 @@
 {
   "name": "srag/requireddata",
-  "description": "Required data",
-  "version": "0.14.0",
+  "description": "Config and fill required data",
+  "version": "0.14.1",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -50,7 +50,7 @@
     "sort-packages": true
   },
   "scripts": {
-    "pre-autoload-dump": [
+    "generate-plugin-readme": [
       "srag\\GeneratePluginInfosHelper\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
