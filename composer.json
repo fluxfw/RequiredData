@@ -42,7 +42,14 @@
   "autoload": {
     "psr-4": {
       "srag\\RequiredData\\": "src/"
-    }
+    },
+    "classmap": [
+      "src/Field/class.FieldsCtrl.php",
+      "src/Field/class.FieldCtrl.php",
+      "src/Field/Field/Group/class.GroupsCtrl.php",
+      "src/Field/Field/Group/class.GroupCtrl.php",
+      "src/Field/Field/StaticMultiSearchSelect/class.SMSSAjaxAutoCompleteCtrl.php"
+    ]
   },
   "config": {
     "classmap-authoritative": true,
