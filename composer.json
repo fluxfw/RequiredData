@@ -11,10 +11,10 @@
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "Required",
-    "Data",
-    "Field"
+    "data",
+    "field",
+    "ilias",
+    "required"
   ],
   "homepage": "https://github.com/studer-raimann/RequiredData",
   "license": "GPL-3.0-only",
