@@ -20,7 +20,6 @@ use srag\RequiredData\Utils\RequiredDataTrait;
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @ilCtrl_isCalledBy srag\RequiredData\Field\FieldCtrl: srag\RequiredData\Field\FieldsCtrl
- * @ilCtrl_isCalledBy srag\RequiredData\Field\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl: srag\RequiredData\Field\FieldCtrl
  */
 class FieldCtrl
 {
