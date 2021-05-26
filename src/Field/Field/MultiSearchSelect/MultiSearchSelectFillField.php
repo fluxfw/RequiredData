@@ -11,8 +11,6 @@ use srag\RequiredData\Field\Field\MultiSelect\MultiSelectFillField;
  * Class MultiSearchSelectFillField
  *
  * @package srag\RequiredData\Field\Field\MultiSearchSelect
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class MultiSearchSelectFillField extends MultiSelectFillField
 {
