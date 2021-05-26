@@ -13,8 +13,6 @@ use srag\RequiredData\Utils\RequiredDataTrait;
  * Class CreateFieldFormBuilder
  *
  * @package srag\RequiredData\Field\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class CreateFieldFormBuilder extends AbstractFormBuilder
 {

@@ -11,8 +11,6 @@ use srag\RequiredData\Utils\RequiredDataTrait;
  * Class FormBuilder
  *
  * @package srag\RequiredData\Fill\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class FormBuilder extends AbstractFormBuilder
 {

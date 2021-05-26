@@ -11,8 +11,6 @@ use srag\RequiredData\Field\FieldsCtrl;
  *
  * @package           srag\RequiredData\Field\Field\Group
  *
- * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy srag\RequiredData\Field\Field\Group\GroupsCtrl: srag\RequiredData\Field\FieldCtrl
  */
 class GroupsCtrl extends FieldsCtrl

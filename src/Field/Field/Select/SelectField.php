@@ -9,8 +9,6 @@ use srag\RequiredData\Field\AbstractField;
  * Class SelectField
  *
  * @package srag\RequiredData\Field\Field\Select
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SelectField extends AbstractField
 {
